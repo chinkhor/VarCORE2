@@ -15,6 +15,9 @@ echo "Generating ACTS output file (2-way combinations)"
 java -Ddoi=2 -Dchandler=solver -jar acts_3.2.jar cFS_Time_ACTS_input.txt cFS_Time_ACTS_output2.txt
 echo
 echo "Generating configuration files for cFS Time"
+if test -d "config"; then
+    rm -rf config
+fi
 mkdir config
 python3 genCitCfg.py -a cFS_Time_ACTS_output2.txt -c cfs
 echo

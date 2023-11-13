@@ -69,7 +69,7 @@ class RTW_Node:
         
             
 class RTW:
-    def __init__(self, filename, feature_map):
+    def __init__(self, filename, feature_map=None):
         self.root = None
         self.sentences = []
         self.solutions = []
@@ -86,7 +86,8 @@ class RTW:
         # construct RTW features/nodes (2nd thing to do) - depend on RTW table
         self.constructRTWFeatures()
         # construct feature map between feature model and code implementation - need RTW nodes
-        self.setupFeatureMap(feature_map)
+        if feature_map is not None:
+            self.setupFeatureMap(feature_map)
         # construct feature diagram in tree - need RTW table and RTW nodes
         self.constructRTWTree()
         # construct feature model constraints - need RTW table
@@ -102,7 +103,7 @@ class RTW:
         # export RTW table to CSV file - need RTW table
         self.exportRTW2CSV(filename.replace(".txt",".csv"))
         # export feature model to XML file - need feature model in XML form (represented by self.FM_XML)
-        self.exportFeatureModel2XML("featuremodel.xml")
+        self.exportFeatureModel2XML(self.root.name.replace('_','') + "FeatureModel.xml")
         
     # validate the input file has a block of valid elements for single RTW entry
     def validateRTWEntry(self, index, lines):
