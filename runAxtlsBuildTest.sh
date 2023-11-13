@@ -5,6 +5,7 @@ fi
 sed -i "s: ssltest: ./ssltest:g" Makefile
 make linuxconf >>buildtest.log 2>&1
 make clean >>buildtest.log 2>&1
+# apply fixes (next 3 lines) to resolve build error caused by enabling CONFIG_JAVA_BINDINGS
 #cp ../axtls_fix/generate_SWIG_interface.pl bindings/.
 #cp ../axtls_fix/Makefile bindings/java/.
 #cp ../axtls_fix/SSLClient.java bindings/java/.

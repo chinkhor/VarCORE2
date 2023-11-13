@@ -42,14 +42,14 @@ ID --> TIME-3
 Valid --> 1
 Rule --> R2
 Parent --> CFS_Time
-Child --> Time_Operation_Model
+Child --> Time_Operation_Mode
 Req --> The "cFS Time" shall define the "time operation model"
 Source --> cfe-userguide, section: 1.22.4 Time Configuration
 
 ID --> TIME-3.1
 Valid --> 1
 Rule --> R4
-Parent --> Time_Operation_Model
+Parent --> Time_Operation_Mode
 Child --> Time_Server, Time_Client
 Req --> The "time operation model" shall use one and only one of the "time server" or the "time client"
 Source --> cfe-userguide, section: 1.22.4.5 Specifying Time Server/Client

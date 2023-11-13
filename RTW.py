@@ -550,6 +550,9 @@ class RTW:
             total_tests = len(self.dict_result['passed']) + len(self.dict_result['failed'])
             print("Total tests ({}) do not match with total configurations ({}), aborted test analysis!".format(total_tests, len(self.solutions)))
             return
+        if len(self.dict_result['failed']) == 0:
+            print("All tests passed, stop the analysis.")
+            return
         # check if failures are due to single parameter configuration
         dict_feature_fail = self.findFailuresBySingleParameter()
         if len(dict_feature_fail) > 0:
