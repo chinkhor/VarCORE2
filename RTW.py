@@ -82,12 +82,18 @@ class RTW:
         self.dict_formula = {'R2': self.R2Formula, 'R3': self.R3Formula, 'R4': self.R4Formula, 'R5': self.R5Formula}
         # sequence of method calls, the order is crucial to ensure dependencies
         # build RTW table (1st thing to do)
-        self.parseRTW(filename)
+        if self.parseRTW(filename) == False:
+            print("RTW instantiation is aborted.")
+            return
         # construct RTW features/nodes (2nd thing to do) - depend on RTW table
         self.constructRTWFeatures()
         # construct feature map between feature model and code implementation - need RTW nodes
         if feature_map is not None:
-            self.setupFeatureMap(feature_map)
+            if self.setupFeatureMap(feature_map) == False:
+                self.features = {}
+                self.table = {}
+                print("RTW instantiation is aborted.")
+                return
         # construct feature diagram in tree - need RTW table and RTW nodes
         self.constructRTWTree()
         # construct feature model constraints - need RTW table
@@ -104,7 +110,7 @@ class RTW:
         self.exportRTW2CSV(filename.replace(".txt",".csv"))
         # export feature model to XML file - need feature model in XML form (represented by self.FM_XML)
         self.exportFeatureModel2XML(self.root.name.replace('_','') + "FeatureModel.xml")
-        
+            
     # validate the input file has a block of valid elements for single RTW entry
     def validateRTWEntry(self, index, lines):
         if ((index + RTW_Entry.elements - 1 < len(lines)) and
@@ -146,15 +152,20 @@ class RTW:
         
     # parse the input RTW file to extract and construct RTW entries
     def parseRTW(self, filename):
-        with open(filename, 'r') as f:
-            lines = f.readlines()
+        try:
+            with open(filename, 'r') as f:
+                lines = f.readlines()
             f.close()
+        except FileNotFoundError:
+            print("File '{}' is not found".format(filename))
+            return False
         for index in range(len(lines)):
             # every valid RTW entry starts with ID (first element of RTW entry) 
             if lines[index].strip().startswith('ID'):
                 if self.validateRTWEntry(index, lines):
                     self.constructRTWEntry(index, lines)
                     index += RTW_Entry.elements
+        return True
     
     # export the RTW table to CSV file
     # can be use for import to popular requirement management tools such as Jira, DOOR, etc
@@ -175,7 +186,7 @@ class RTW:
                     children_str = children_str[:-2]
                     f.write("\"" + entry.ID + "\",\"" + entry.Req.replace('"','') + "\",\"" + entry.Rule + "\",\"" + entry.Parent + "\",\"" + children_str + "\",\"" + entry.Source + "\"\n")
             f.close()
-    
+            
     # extract cross-tree constraints from RTW table, maintain in "self.constraints" dictionary
     # key of dictionary: requirement ID 
     # value of dictionary: propositional logic formula
@@ -215,21 +226,26 @@ class RTW:
     # map features to pre-processor directive macros (codes) in implementation
     # has dependency on constructRTWFeatures to construct RTW node first
     def setupFeatureMap(self, filename):
-        self.feature_map = {}
-        with open(filename, 'r') as f:
-            lines = f.readlines();
-            for line in lines:
-                line = line.split()
-                # if len is 1 or less, not a valid entry
-                if len(line) <= 1:
-                    continue
-                self.feature_map[line[0]] = line[1]
-            f.close()
+        try:
+            self.feature_map = {}
+            with open(filename, 'r') as f:
+                lines = f.readlines();
+                for line in lines:
+                    line = line.split()
+                    # if len is 1 or less, not a valid entry
+                    if len(line) <= 1:
+                        continue
+                    self.feature_map[line[0]] = line[1]
+                f.close()
+        except FileNotFoundError:
+            print("File '{}' is not found".format(filename))
+            return False
         for feature in self.features:
             if feature not in self.feature_map:
                 node = self.features[feature]
                 node.abstract = True
-                
+        return True
+    
     # construct the tree for features to show hierarchy of parents and children features relationship 
     # tree node is RTW node of the feature
     def constructRTWTree(self):
@@ -356,7 +372,7 @@ class RTW:
             for line in self.FM_XML:
                 f.write(line)
             f.close()
-    
+            
     # construct sentences for feature model (FM)
     # sentence is a propositional logic expression for parent-child relationship or cross-tree constraint releationship
     # the propositional logic definition is based on rules (R2, R3, R4, R5 and R7)
@@ -468,9 +484,13 @@ class RTW:
     # generate configuration files based on ACTS output file
     # ACTS tool is used to generate test sets for 1-way, 2-way, 3-way combinations of features
     def generateCitCfgFiles(self, filename, component):
-        with open(filename, 'r') as f:
-            lines = f.readlines()
-            f.close()
+        try:
+            with open(filename, 'r') as f:
+                lines = f.readlines()
+                f.close()
+        except FileNotFoundError:
+            print("File '{}' is not found".format(filename))
+            return
         # current support cFS Time and axTLS build system
         dict_createFileFunc = {'cfs': self.createCfsCfgFiles, 'axtls': self.createAxtlsCfgFiles}
         if component not in dict_createFileFunc:
@@ -520,18 +540,23 @@ class RTW:
     # get the test result from file
     def getTestResult(self, filename):
         self.dict_result = {'passed': [], 'failed': []}
-        with open(filename, 'r') as f:
-            for line in f:
-                # file entry format: 
-                #   Build cfg1 failed
-                #   Build cfg6 passed
-                # line[2] is either "failed" or "passed"
-                # line[1] is cfgN where N is the cfg #
-                line = line.split()
-                cfg = line[1].replace("cfg", "")
-                self.dict_result[line[2]].append(cfg)
-            f.close()
+        try:
+            with open(filename, 'r') as f:
+                for line in f:
+                    # file entry format: 
+                    #   Build cfg1 failed
+                    #   Build cfg6 passed
+                    # line[2] is either "failed" or "passed"
+                    # line[1] is cfgN where N is the cfg #
+                    line = line.split()
+                    cfg = line[1].replace("cfg", "")
+                    self.dict_result[line[2]].append(cfg)
+                f.close()
+        except FileNotFoundError:
+            print("File '{}' is not found".format(filename))
+            return False
         self.showTestResult()
+        return True
          
     # check if number of tests matchs total configurations (represented by self.solutions)
     # one test per configuration
@@ -544,14 +569,13 @@ class RTW:
         
     # analyze the test result to indetify failures triggered by single parameter or 2-way feature interaction 
     def analyzeTestResult(self, filename):
-        self.getTestResult(filename)
+        if self.getTestResult(filename) == False:
+            print("Aborted analysis")
+            return
         # abort test analysis if total tests do not match total configurations (represented by self.solutions) 
         if not self.isCfgSetCompatible():
             total_tests = len(self.dict_result['passed']) + len(self.dict_result['failed'])
             print("Total tests ({}) do not match with total configurations ({}), aborted test analysis!".format(total_tests, len(self.solutions)))
-            return
-        if len(self.dict_result['failed']) == 0:
-            print("All tests passed, stop the analysis.")
             return
         # check if failures are due to single parameter configuration
         dict_feature_fail = self.findFailuresBySingleParameter()

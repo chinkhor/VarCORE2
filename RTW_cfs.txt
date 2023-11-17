@@ -11,7 +11,7 @@ Valid --> 1
 Rule --> R2
 Parent --> CFS_Time
 Child --> Time_Format
-Req --> The "cFS Time" shall define the "time format"
+Req --> The "cFS Time" shall select the "time format"
 Source --> cfe-userguide, section: 1.22.4 Time Configuration
 
 ID --> TIME-1.1
@@ -24,43 +24,27 @@ Source --> cfe-userguide, section: 1.22.4.1 Time Format Selection
 
 ID --> TIME-2 
 Valid --> 1
-Rule --> R2
+Rule --> R3
 Parent --> CFS_Time
-Child --> Tone_Data_Order
-Req --> The "cFS Time" shall define the "tone and data order"
-Source --> cfe-userguide, section: 1.22.4 Time Configuration
-
-ID --> TIME-2.1
-Valid --> 1
-Rule --> R4
-Parent --> Tone_Data_Order
-Child --> Data_preceding_Tone, Data_following_Tone
-Req --> The "tone and data order" shall use one and only one of the "data preceding tone order" or the "data following tone order"
-Source --> cfe-userguide, section: 1.22.4.3 Selecting Tone and Data Ordering
+Child --> Big_Endian_Byte_Order
+Req --> The "cFS Time" may use the "big endian byte order"
+Source --> cfe-userguide, section: 1.22.4.6 Specifying Time Tone Byte Order 
 
 ID --> TIME-3 
 Valid --> 1
 Rule --> R2
 Parent --> CFS_Time
-Child --> Time_Operation_Mode
-Req --> The "cFS Time" shall define the "time operation model"
+Child --> Tone_Data_Order
+Req --> The "cFS Time" shall select the "tone and data order"
 Source --> cfe-userguide, section: 1.22.4 Time Configuration
 
 ID --> TIME-3.1
 Valid --> 1
 Rule --> R4
-Parent --> Time_Operation_Mode
-Child --> Time_Server, Time_Client
-Req --> The "time operation model" shall use one and only one of the "time server" or the "time client"
-Source --> cfe-userguide, section: 1.22.4.5 Specifying Time Server/Client
-
-ID --> TIME-3.2
-Valid --> 1
-Rule --> R7
-Parent --> Single_Processor
-Child --> Time_Server
-Req --> The "single processor" requires the "timer server"
-Source --> cfe-userguide, section: 1.22.4.5 Specifying Time Server/Client
+Parent --> Tone_Data_Order
+Child --> Data_Preceding_Tone, Data_Following_Tone
+Req --> The "tone and data order" shall use one and only one of the "data preceding tone order" or the "data following tone order"
+Source --> cfe-userguide, section: 1.22.4.3 Selecting Tone and Data Ordering
 
 ID --> TIME-4 
 Valid --> 1
@@ -88,11 +72,27 @@ Source --> cfe-userguide, section: 1.22.4.2 Enabling Fake Tone Signal
 
 ID --> TIME-5 
 Valid --> 1
-Rule --> R3
+Rule --> R2
 Parent --> CFS_Time
-Child --> Big_Endian_Byte_Order
-Req --> The "cFS Time" may use the "big endian byte order"
-Source --> cfe-userguide, section: 1.22.4.6 Specifying Time Tone Byte Order 
+Child --> Time_Operation_Mode
+Req --> The "cFS Time" shall select the "time operation mode"
+Source --> cfe-userguide, section: 1.22.4 Time Configuration
+
+ID --> TIME-5.1
+Valid --> 1
+Rule --> R4
+Parent --> Time_Operation_Mode
+Child --> Time_Server, Time_Client
+Req --> The "time operation mode" shall use one and only one of the "time server" or the "time client"
+Source --> cfe-userguide, section: 1.22.4.5 Specifying Time Server/Client
+
+ID --> TIME-5.2
+Valid --> 1
+Rule --> R7
+Parent --> Single_Processor
+Child --> Time_Server
+Req --> The "single processor" requires the "timer server"
+Source --> cfe-userguide, section: 1.22.4.5 Specifying Time Server/Client
 
 ID --> TIME-6 
 Valid --> 1
@@ -146,15 +146,15 @@ ID --> TIME-8
 Valid --> 1
 Rule --> R3
 Parent --> CFS_Time
-Child --> Active_Tone_signal
-Req --> The "cFS Time" may specify the "active tone signal" 
+Child --> Active_Tone_Signal
+Req --> The "cFS Time" may select the "active tone signal" 
 Source --> cfe-userguide, section: 1.22.4.9 Specifying Time Signal 
 
 ID --> TIME-9
 Valid --> 1
 Rule --> R7
 Parent --> Fake_Tone
-Child --> Data_following_Tone
+Child --> Data_Following_Tone
 Req --> The "fake tone" requires the "data following tone order"
 Source --> cfe-userguide, section: 11.97.2.1 CFE_MISSION_TIME_AT_TONE_WAS
 
