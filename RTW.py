@@ -1,3 +1,5 @@
+from itertools import combinations
+
 class RTW_Entry:
     # number of elements per RTW entry
     elements = 7
@@ -570,31 +572,39 @@ class RTW:
     # analyze the test result to indetify failures triggered by single parameter or 2-way feature interaction 
     def analyzeTestResult(self, filename):
         if self.getTestResult(filename) == False:
-            print("Aborted analysis")
+            print("\nAborted analysis")
             return
         # abort test analysis if total tests do not match total configurations (represented by self.solutions) 
         if not self.isCfgSetCompatible():
             total_tests = len(self.dict_result['passed']) + len(self.dict_result['failed'])
-            print("Total tests ({}) do not match with total configurations ({}), aborted test analysis!".format(total_tests, len(self.solutions)))
+            print("\nTotal tests ({}) do not match with total configurations ({}), aborted test analysis!".format(total_tests, len(self.solutions)))
             return
         # check if failures are due to single parameter configuration
         dict_feature_fail = self.findFailuresBySingleParameter()
         if len(dict_feature_fail) > 0:
-            print("Failure triggered by single parameter, potential candidates: ")
+            print("\nFailure triggered by single parameter, potential candidates: ")
             for key in dict_feature_fail:
                 print("  {}".format(key))
+                feature = key.split()[0]
+                node = self.features[feature]
+                print("       Requirements: {}".format(node.tracedReq))
         else:
-            # if failures are not triggered by single parameter, 
-            # proceed to check if it is triggered by 2-way feature interaction
-            print("No failure triggered by single parameter\n")
-            dict_interaction_fail = self.findFailuresBy2WayInteraction()
+            print("\nNo failure triggered by single parameter")
+        # check if failures are due to t-way feature interaction
+        for t in range(2, 4):
+            dict_interaction_fail = self.findFailuresByInteraction(t)
             if len(dict_interaction_fail) > 0:
-                print("Failure triggered by 2-way feature interaction, potential candidates: ")
+                print("\nFailure triggered by {}-way feature interaction, potential candidates: \n".format(t))
                 for interaction in dict_interaction_fail:
                     print("  {}".format(interaction))
+                    features = interaction.split(" && ")
+                    for feature in features:
+                        feature = feature.split()[0]
+                        node = self.features[feature]
+                        print("       Requirements for {}: {}".format(feature, node.tracedReq))
             else:
-                print("No failure triggered by 2-way feature interaction")
-  
+                print("\nNo failure triggered by {}-way feature interaction".format(t))
+
     # find failures caused by single parameters, report all single parameters     
     def findFailuresBySingleParameter(self):
         dict_feature_fail = {}  
@@ -617,41 +627,81 @@ class RTW:
         # single parameter's failure
         return dict_feature_fail
     
-    # find failures caused by 2-way (pair-wise) feature interaction, report the combination of two parameters     
-    def findFailuresBy2WayInteraction(self):
+    # find features which setting is same for all configurations
+    def findCommonParameters(self):
+        dict_common_features = {}  
+        total_cfg = len(self.solutions)
+        for solution in self.solutions:
+            for feature in solution:
+                key = feature + " = " + solution[feature]
+                if key in dict_common_features:
+                    dict_common_features[key] = dict_common_features[key] + 1
+                else:
+                    dict_common_features[key] = 1
+        for key in dict_common_features.copy():
+            if dict_common_features[key] != total_cfg:
+                del dict_common_features[key]
+        return dict_common_features
+
+    # construct an interaction formula: e.g. featureA = True && featureB = False && ...
+    def constructInteraction(self, comb):
+        interaction = ""
+        for feature in comb:
+            interaction = interaction + feature + " && " 
+        return interaction[:-4]      
+        
+    # find failures caused by t-way feature interactions     
+    def findFailuresByInteraction(self, ways):
         # find feature interaction failures
         dict_interaction_fail = {}
-        # get all 2-way combinations of parameters' assignments from configurations that failed build test
+        dict_common_features = self.findCommonParameters()
+        # get all t-way combinations of parameters' assignments from configurations that failed build test
         # into a dictionary
         for cfg_no in self.dict_result['failed']:
             solution = self.solutions[int(cfg_no)-1]
             assignments = []
+            # get all features setting in each configuration
             for feature in solution:
                 assignment = feature + " = " + solution[feature]
                 assignments.append(assignment)
-            for i in range (len(assignments)):
-                for j in range (i, len(assignments)):
-                    if assignments[i] != assignments[j]:
-                        interaction = assignments[i] + " && " + assignments[j]
-                        dict_interaction_fail[interaction] = 1  
+            # get t-way combinations for features
+            comb = combinations(assignments, ways)
+            for feature in list(comb):
+                interaction = self.constructInteraction(feature)
+                if interaction in dict_interaction_fail:
+                    dict_interaction_fail[interaction] = dict_interaction_fail[interaction] + 1
+                else:
+                    dict_interaction_fail[interaction] = 1 
+        total_failed = len(self.dict_result['failed'])
+        total_cfg = total_failed + len(self.dict_result['passed'])
+        # keep only the feature settings that are same in all failed configurations 
+        for key in dict_interaction_fail.copy():
+            if dict_interaction_fail[key] != total_failed:
+                del dict_interaction_fail[key]
+        # remove common feature settings that are same for all configurations (both passed and failed)
+        for key in dict_common_features:
+            for interaction in dict_interaction_fail.copy():
+                if key in interaction:
+                    del dict_interaction_fail[interaction]
         # remove those combinations' assignments in dictionary if the combinations appear in the configurations
         # that passed build test
         for cfg_no in self.dict_result['passed']:
             solution = self.solutions[int(cfg_no)-1]
             assignments = []
+            # get all features setting in each configuration
             for feature in solution:
                 assignment = feature + " = " + solution[feature]
                 assignments.append(assignment)
-            for i in range (len(assignments)):
-                for j in range (i, len(assignments)):
-                    if assignments[i] != assignments[j]: 
-                        interaction = assignments[i] + " && " + assignments[j]
-                        if interaction in dict_interaction_fail:
-                            del dict_interaction_fail[interaction]
+            # get t-way combinations for features
+            comb = combinations(assignments, ways)
+            for feature in list(comb):
+                interaction = self.constructInteraction(feature)
+                if interaction in dict_interaction_fail:
+                    del dict_interaction_fail[interaction]
         # return the remaining parameters' assignments which are "potential candidates" for 
-        # 2-way feature interaction failure
+        # t-way feature interaction failure
         return dict_interaction_fail
-    
+
     def showRTWConstraints(self):
         print("Constraints:")
         for ID in self.constraints:
@@ -669,6 +719,12 @@ class RTW:
         for feature in self.features:
             node = self.features[feature]
             node.printNode()
+            
+    def showRTWAbstractFeatures(self):
+        for feature in self.features:
+            node = self.features[feature]
+            if node.abstract:
+                node.printNode()
     
     def showSentences(self):
         print("\nSentences list: ")
