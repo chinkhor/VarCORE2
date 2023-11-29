@@ -48,7 +48,9 @@ class RTW_Node:
         self.valid = 0
         # trace the requirements (IDs) associated with the feature
         self.tracedReq = []
-    
+        # assignment for the feature: True or False
+        self.assignment = ""
+        
     # the feature is a terminal node, no child
     def isLeaf(self):
         if len(self.children) > 0:
@@ -568,6 +570,56 @@ class RTW:
             return True
         else:
             return False
+    
+    # check if the nodes are parent-child relationship
+    def isParentChild(self, nodes):
+        for i in range(len(nodes)):
+            for j in range(len(nodes)):
+                if j == i:
+                    continue
+                for childnode in nodes[i].children:
+                    if nodes[j].name == childnode.name:
+                        return True
+                for childnode in nodes[j].children:
+                    if nodes[i].name == childnode.name:
+                        return True
+        return False
+    
+    # check if the nodes are alternative peer relationship 
+    def isAlternativeChildren(self, nodes):
+        for i in range(len(nodes)):
+            for j in range(len(nodes)):
+                if j == i:
+                    continue
+                parent1 = nodes[i].parent
+                parent2 = nodes[j].parent
+                if parent1 is not None and parent2 is not None:
+                    if (parent1.name == parent2.name) and (parent1.rule == 'R4') and (nodes[i].assignment != nodes[j].assignment): 
+                        return True
+        return False
+    
+    # analyze the relationship between the features in the interaction  
+    def analyzeInteraction(self, interactions):
+        dict_interactions = interactions.copy()
+        for interaction in interactions.copy():
+            features = interaction.split(" && ")
+            nodes_dict = {}
+            nodes_list = []
+            # format e.g.: featureA = True 
+            for feature in features:
+                word = feature.split()
+                # word[0] is feature
+                node = self.features[word[0]]
+                # word[2] is either "True" or "False"
+                node.assignment = word[2]
+                nodes_list.append(node) 
+                if word[2] in nodes_dict:
+                    nodes_dict[word[2]].append(node)
+                else:
+                    nodes_dict[word[2]] = [node]
+            if self.isParentChild(nodes_dict['True']) or self.isAlternativeChildren(nodes_list):
+                del dict_interactions[interaction]
+        return dict_interactions
         
     # analyze the test result to indetify failures triggered by single parameter or 2-way feature interaction 
     def analyzeTestResult(self, filename):
@@ -593,6 +645,7 @@ class RTW:
         # check if failures are due to t-way feature interaction
         for t in range(2, 4):
             dict_interaction_fail = self.findFailuresByInteraction(t)
+            dict_interaction_fail = self.analyzeInteraction(dict_interaction_fail)
             if len(dict_interaction_fail) > 0:
                 print("\nFailure triggered by {}-way feature interaction, potential candidates: \n".format(t))
                 for interaction in dict_interaction_fail:
