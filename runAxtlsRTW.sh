@@ -2,6 +2,9 @@
 echo "Setting up Environment"
 bash ./setup_env.sh
 echo
+echo "Downloading ACTS3.2"
+bash ./download_acts.sh
+echo
 echo "Installing axTLS"
 wget https://sourceforge.net/projects/axtls/files/2.1.5/axTLS-2.1.5.tar.gz
 tar -xvf axTLS-2.1.5.tar.gz

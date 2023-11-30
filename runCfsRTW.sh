@@ -2,6 +2,9 @@
 echo "Setting up Environment"
 bash ./setup_env.sh
 echo
+echo "Downloading ACTS3.2"
+bash ./download_acts.sh
+echo
 echo "Installing cFS"
 bash ./create_cfs.sh
 echo
