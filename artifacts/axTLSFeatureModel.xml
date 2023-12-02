@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel>
+	<properties>
+		<graphics key="autolayoutconstraints" value="false"/>
+		<graphics key="legendposition" value="1223,200"/>
+		<graphics key="legendautolayout" value="false"/>
+		<graphics key="showconstraints" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="axTLS">
+		<description>Requirements: ['AXTLS-1', 'AXTLS-2', 'AXTLS-3', 'AXTLS-4', 'AXTLS-5', 'AXTLS-6', 'AXTLS-7', 'AXTLS-8', 'AXTLS-9']</description>
+		<alt abstract="true" mandatory="true" name="OS_Platform">
+		<description>Requirements: ['AXTLS-1', 'AXTLS-1.1']</description>
+			<feature name="Linux_OS">
+			<description>Requirements: ['AXTLS-1.1']</description>
+			</feature>
+			<feature name="CygWin_OS">
+			<description>Requirements: ['AXTLS-1.1']</description>
+			</feature>
+		<and name="Win32_OS">
+		<description>Requirements: ['AXTLS-1.1', 'AXTLS-1.1.1', 'AXTLS-1.1.2', 'AXTLS-10', 'AXTLS-11', 'AXTLS-12', 'AXTLS-13', 'AXTLS-14', 'AXTLS-15', 'AXTLS-16']</description>
+			<feature name="Win32_Crypto_Library">
+			<description>Requirements: ['AXTLS-1.1.1']</description>
+			</feature>
+		<alt abstract="true" mandatory="true" name="Visual_Studio_Compiler">
+		<description>Requirements: ['AXTLS-1.1.2', 'AXTLS-1.1.2.1']</description>
+			<feature name="Version_7_0">
+			<description>Requirements: ['AXTLS-1.1.2.1']</description>
+			</feature>
+			<feature name="Version_8_0">
+			<description>Requirements: ['AXTLS-1.1.2.1']</description>
+			</feature>
+			<feature name="Version_10_0">
+			<description>Requirements: ['AXTLS-1.1.2.1']</description>
+			</feature>
+		</alt>
+		</and>
+		</alt>
+			<feature name="Debug_Mode">
+			<description>Requirements: ['AXTLS-2', 'AXTLS-21']</description>
+			</feature>
+			<feature name="Unwanted_Section_Stripping">
+			<description>Requirements: ['AXTLS-3', 'AXTLS-21']</description>
+			</feature>
+		<and abstract="true" mandatory="true" name="SSL_Library">
+		<description>Requirements: ['AXTLS-4', 'AXTLS-4.1', 'AXTLS-4.2', 'AXTLS-4.3', 'AXTLS-4.4', 'AXTLS-4.5', 'AXTLS-4.6', 'AXTLS-4.7', 'AXTLS-4.8', 'AXTLS-4.9']</description>
+		<alt abstract="true" mandatory="true" name="SSL_Mode">
+		<description>Requirements: ['AXTLS-4.1', 'AXTLS-4.1.1']</description>
+			<feature name="Server_Only">
+			<description>Requirements: ['AXTLS-4.1.1']</description>
+			</feature>
+		<and name="Server_Only_Verify">
+		<description>Requirements: ['AXTLS-4.1.1', 'AXTLS-4.1.1.1']</description>
+			<feature name="Performance_Testing">
+			<description>Requirements: ['AXTLS-4.1.1.1']</description>
+			</feature>
+		</and>
+			<feature name="Server_Client">
+			<description>Requirements: ['AXTLS-4.1.1']</description>
+			</feature>
+		<and name="Server_Client_Full_Diagnostic">
+		<description>Requirements: ['AXTLS-4.1.1', 'AXTLS-4.1.1.2']</description>
+			<feature name="SSL_Testing">
+			<description>Requirements: ['AXTLS-4.1.1.2']</description>
+			</feature>
+		</and>
+			<feature name="Skeleton_Mode">
+			<description>Requirements: ['AXTLS-4.1.1', 'AXTLS-17', 'AXTLS-18', 'AXTLS-19', 'AXTLS-20']</description>
+			</feature>
+		</alt>
+		<alt abstract="true" name="SSL_Protocol">
+		<description>Requirements: ['AXTLS-4.2', 'AXTLS-4.2.1', 'AXTLS-20']</description>
+			<feature name="Low_Security">
+			<description>Requirements: ['AXTLS-4.2.1']</description>
+			</feature>
+			<feature name="Medium_Security">
+			<description>Requirements: ['AXTLS-4.2.1']</description>
+			</feature>
+			<feature name="High_Security">
+			<description>Requirements: ['AXTLS-4.2.1']</description>
+			</feature>
+		</alt>
+			<feature name="Default_Key">
+			<description>Requirements: ['AXTLS-4.3']</description>
+			</feature>
+			<feature name="X509_Cert_Generation">
+			<description>Requirements: ['AXTLS-4.4']</description>
+			</feature>
+			<feature name="PEM_Format">
+			<description>Requirements: ['AXTLS-4.5', 'AXTLS-17']</description>
+			</feature>
+			<feature name="PKCS12_Format">
+			<description>Requirements: ['AXTLS-4.6', 'AXTLS-18']</description>
+			</feature>
+			<feature name="SSL_Context_Mutex">
+			<description>Requirements: ['AXTLS-4.7']</description>
+			</feature>
+			<feature name="dev_urandom">
+			<description>Requirements: ['AXTLS-4.8', 'AXTLS-15']</description>
+			</feature>
+			<feature name="OpenSSL_API_Compatibility">
+			<description>Requirements: ['AXTLS-4.9']</description>
+			</feature>
+		</and>
+			<feature name="axTLS_Wrap">
+			<description>Requirements: ['AXTLS-5', 'AXTLS-13']</description>
+			</feature>
+		<and name="HTTPS_Web_Server">
+		<description>Requirements: ['AXTLS-6', 'AXTLS-6.1', 'AXTLS-6.2', 'AXTLS-6.3', 'AXTLS-6.4', 'AXTLS-6.5', 'AXTLS-6.6', 'AXTLS-6.7', 'AXTLS-6.8']</description>
+			<feature name="Static_Build">
+			<description>Requirements: ['AXTLS-6.1']</description>
+			</feature>
+			<feature name="Directory_Listing">
+			<description>Requirements: ['AXTLS-6.2']</description>
+			</feature>
+			<feature name="Authorization">
+			<description>Requirements: ['AXTLS-6.3']</description>
+			</feature>
+			<feature name="IPv6">
+			<description>Requirements: ['AXTLS-6.4', 'AXTLS-11']</description>
+			</feature>
+			<feature name="Different_User">
+			<description>Requirements: ['AXTLS-6.5', 'AXTLS-16']</description>
+			</feature>
+			<feature name="Verbose_Mode">
+			<description>Requirements: ['AXTLS-6.6']</description>
+			</feature>
+			<feature name="Daemon_Process">
+			<description>Requirements: ['AXTLS-6.7', 'AXTLS-14']</description>
+			</feature>
+		<and name="CGI">
+		<description>Requirements: ['AXTLS-6.8', 'AXTLS-6.8.1', 'AXTLS-10']</description>
+		<and name="HTTP_LUA">
+		<description>Requirements: ['AXTLS-6.8.1', 'AXTLS-6.8.1.1']</description>
+			<feature name="LUA_Build_Install">
+			<description>Requirements: ['AXTLS-6.8.1.1']</description>
+			</feature>
+		</and>
+		</and>
+		</and>
+		<and name="Language_Bindings">
+		<description>Requirements: ['AXTLS-7', 'AXTLS-7.1', 'AXTLS-7.2', 'AXTLS-7.3', 'AXTLS-7.4', 'AXTLS-7.5']</description>
+			<feature name="CSharp_Bindings">
+			<description>Requirements: ['AXTLS-7.1', 'AXTLS-22']</description>
+			</feature>
+			<feature name="VB_NET_Bindings">
+			<description>Requirements: ['AXTLS-7.2', 'AXTLS-23']</description>
+			</feature>
+			<feature name="Java_Bindings">
+			<description>Requirements: ['AXTLS-7.3', 'AXTLS-24']</description>
+			</feature>
+			<feature name="Perl_Bindings">
+			<description>Requirements: ['AXTLS-7.4', 'AXTLS-25']</description>
+			</feature>
+			<feature name="LUA_Bindings">
+			<description>Requirements: ['AXTLS-7.5', 'AXTLS-12', 'AXTLS-26']</description>
+			</feature>
+		</and>
+		<and name="axSSL_Sample_Generation">
+		<description>Requirements: ['AXTLS-8', 'AXTLS-8.1', 'AXTLS-8.2', 'AXTLS-8.3', 'AXTLS-8.4', 'AXTLS-8.5', 'AXTLS-8.6']</description>
+			<feature name="C_Language_Sample">
+			<description>Requirements: ['AXTLS-8.1']</description>
+			</feature>
+			<feature name="CSharp_Language_Sample">
+			<description>Requirements: ['AXTLS-8.2', 'AXTLS-22']</description>
+			</feature>
+			<feature name="VB_NET_Language_Sample">
+			<description>Requirements: ['AXTLS-8.3', 'AXTLS-23']</description>
+			</feature>
+			<feature name="Java_Language_Sample">
+			<description>Requirements: ['AXTLS-8.4', 'AXTLS-24']</description>
+			</feature>
+			<feature name="Perl_Language_Sample">
+			<description>Requirements: ['AXTLS-8.5', 'AXTLS-25']</description>
+			</feature>
+			<feature name="LUA_Language_Sample">
+			<description>Requirements: ['AXTLS-8.6', 'AXTLS-26']</description>
+			</feature>
+		</and>
+		<and abstract="true" name="Big_Integer_Options">
+		<description>Requirements: ['AXTLS-9', 'AXTLS-9.1', 'AXTLS-9.2', 'AXTLS-9.3', 'AXTLS-9.4', 'AXTLS-9.5', 'AXTLS-9.6', 'AXTLS-9.7', 'AXTLS-19']</description>
+		<alt abstract="true" mandatory="true" name="Reduction_Algorithm">
+		<description>Requirements: ['AXTLS-9.1', 'AXTLS-9.1.1']</description>
+			<feature name="Classical_Algo">
+			<description>Requirements: ['AXTLS-9.1.1']</description>
+			</feature>
+			<feature name="Montgomery_Algo">
+			<description>Requirements: ['AXTLS-9.1.1']</description>
+			</feature>
+			<feature name="Barrett_Algo">
+			<description>Requirements: ['AXTLS-9.1.1']</description>
+			</feature>
+		</alt>
+			<feature name="Chinese_Remainder_Theorem">
+			<description>Requirements: ['AXTLS-9.2']</description>
+			</feature>
+			<feature name="Karatsuba_Multiplication">
+			<description>Requirements: ['AXTLS-9.3']</description>
+			</feature>
+			<feature name="Sliding_Window_Exponentiation">
+			<description>Requirements: ['AXTLS-9.4']</description>
+			</feature>
+			<feature name="Square_Algorithm">
+			<description>Requirements: ['AXTLS-9.5']</description>
+			</feature>
+			<feature name="Big_Integer_Integrity_Check">
+			<description>Requirements: ['AXTLS-9.6']</description>
+			</feature>
+		<alt abstract="true" mandatory="true" name="Big_Integer_Size">
+		<description>Requirements: ['AXTLS-9.7', 'AXTLS-9.7.1']</description>
+			<feature name="Int_8_Bit">
+			<description>Requirements: ['AXTLS-9.7.1']</description>
+			</feature>
+			<feature name="Int_16_Bit">
+			<description>Requirements: ['AXTLS-9.7.1']</description>
+			</feature>
+			<feature name="Int_32_Bit">
+			<description>Requirements: ['AXTLS-9.7.1']</description>
+			</feature>
+		</alt>
+		</and>
+		</and>
+	</struct>
+	<constraints>
+		<rule>
+		<description>Constraint Requirement: AXTLS-10</description>
+			<imp>
+				<var>Win32_OS</var>
+				<not>
+				<var>CGI</var>
+				</not>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-11</description>
+			<imp>
+				<var>Win32_OS</var>
+				<not>
+				<var>IPv6</var>
+				</not>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-12</description>
+			<imp>
+				<var>Win32_OS</var>
+				<not>
+				<var>LUA_Bindings</var>
+				</not>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-13</description>
+			<imp>
+				<var>Win32_OS</var>
+				<not>
+				<var>axTLS_Wrap</var>
+				</not>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-14</description>
+			<imp>
+				<var>Win32_OS</var>
+				<not>
+				<var>Daemon_Process</var>
+				</not>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-15</description>
+			<imp>
+				<var>Win32_OS</var>
+				<not>
+				<var>dev_urandom</var>
+				</not>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-16</description>
+			<imp>
+				<var>Win32_OS</var>
+				<not>
+				<var>Different_User</var>
+				</not>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-17</description>
+			<imp>
+				<var>Skeleton_Mode</var>
+				<not>
+				<var>PEM_Format</var>
+				</not>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-18</description>
+			<imp>
+				<var>Skeleton_Mode</var>
+				<not>
+				<var>PKCS12_Format</var>
+				</not>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-19</description>
+			<imp>
+				<var>Skeleton_Mode</var>
+				<not>
+				<var>Big_Integer_Options</var>
+				</not>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-20</description>
+			<imp>
+				<var>Skeleton_Mode</var>
+				<not>
+				<var>SSL_Protocol</var>
+				</not>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-21</description>
+			<imp>
+				<var>Debug_Mode</var>
+				<not>
+				<var>Unwanted_Section_Stripping</var>
+				</not>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-22</description>
+			<imp>
+				<var>CSharp_Language_Sample</var>
+				<var>CSharp_Bindings</var>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-23</description>
+			<imp>
+				<var>VB_NET_Language_Sample</var>
+				<var>VB_NET_Bindings</var>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-24</description>
+			<imp>
+				<var>Java_Language_Sample</var>
+				<var>Java_Bindings</var>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-25</description>
+			<imp>
+				<var>Perl_Language_Sample</var>
+				<var>Perl_Bindings</var>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-26</description>
+			<imp>
+				<var>LUA_Language_Sample</var>
+				<var>LUA_Bindings</var>
+			</imp>
+		</rule>
+	</constraints>
+</featureModel>

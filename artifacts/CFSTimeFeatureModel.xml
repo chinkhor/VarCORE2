@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel>
+	<properties>
+		<graphics key="autolayoutconstraints" value="false"/>
+		<graphics key="legendposition" value="1223,200"/>
+		<graphics key="legendautolayout" value="false"/>
+		<graphics key="showconstraints" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="CFS_Time">
+		<description>Requirements: ['TIME-1', 'TIME-2', 'TIME-3', 'TIME-4', 'TIME-5', 'TIME-6', 'TIME-7', 'TIME-8']</description>
+		<alt abstract="true" mandatory="true" name="Time_Format">
+		<description>Requirements: ['TIME-1', 'TIME-1.1']</description>
+			<feature name="TAI_Format">
+			<description>Requirements: ['TIME-1.1']</description>
+			</feature>
+			<feature name="UTC_Format">
+			<description>Requirements: ['TIME-1.1']</description>
+			</feature>
+		</alt>
+			<feature name="Big_Endian_Byte_Order">
+			<description>Requirements: ['TIME-2']</description>
+			</feature>
+		<alt abstract="true" mandatory="true" name="Tone_Data_Order">
+		<description>Requirements: ['TIME-3', 'TIME-3.1']</description>
+			<feature name="Data_Preceding_Tone">
+			<description>Requirements: ['TIME-3.1']</description>
+			</feature>
+			<feature name="Data_Following_Tone">
+			<description>Requirements: ['TIME-3.1', 'TIME-9']</description>
+			</feature>
+		</alt>
+			<feature name="Fake_Tone">
+			<description>Requirements: ['TIME-4', 'TIME-4.1', 'TIME-4.2', 'TIME-9']</description>
+			</feature>
+		<alt abstract="true" mandatory="true" name="Time_Operation_Mode">
+		<description>Requirements: ['TIME-5', 'TIME-5.1']</description>
+			<feature name="Time_Server">
+			<description>Requirements: ['TIME-5.1', 'TIME-5.2', 'TIME-7.1']</description>
+			</feature>
+			<feature name="Time_Client">
+			<description>Requirements: ['TIME-5.1', 'TIME-6.1']</description>
+			</feature>
+		</alt>
+			<feature name="Virtual_MET">
+			<description>Requirements: ['TIME-4.1', 'TIME-6', 'TIME-6.1', 'TIME-10']</description>
+			</feature>
+		<alt name="External_Time_Source">
+		<description>Requirements: ['TIME-4.2', 'TIME-7', 'TIME-7.1', 'TIME-7.2', 'TIME-10']</description>
+			<feature name="MET">
+			<description>Requirements: ['TIME-7.2']</description>
+			</feature>
+			<feature name="GPS">
+			<description>Requirements: ['TIME-7.2']</description>
+			</feature>
+			<feature name="Spacecraft_Time">
+			<description>Requirements: ['TIME-7.2']</description>
+			</feature>
+		</alt>
+			<feature name="Active_Tone_Signal">
+			<description>Requirements: ['TIME-8']</description>
+			</feature>
+		</and>
+	</struct>
+	<constraints>
+		<rule>
+		<description>Constraint Requirement: TIME-4.1</description>
+			<imp>
+				<var>Fake_Tone</var>
+				<var>Virtual_MET</var>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: TIME-4.2</description>
+			<imp>
+				<var>Fake_Tone</var>
+				<not>
+				<var>External_Time_Source</var>
+				</not>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: TIME-6.1</description>
+			<imp>
+				<var>Time_Client</var>
+				<var>Virtual_MET</var>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: TIME-7.1</description>
+			<imp>
+				<var>External_Time_Source</var>
+				<var>Time_Server</var>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: TIME-9</description>
+			<imp>
+				<var>Fake_Tone</var>
+				<var>Data_Following_Tone</var>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: TIME-10</description>
+			<imp>
+				<var>External_Time_Source</var>
+				<var>Virtual_MET</var>
+			</imp>
+		</rule>
+	</constraints>
+</featureModel>
