@@ -66,7 +66,7 @@
 		<and name="Server_Client_Full_Diagnostic">
 		<description>Requirements: ['AXTLS-4.1.1', 'AXTLS-4.1.1.2']</description>
 			<feature name="SSL_Testing">
-			<description>Requirements: ['AXTLS-4.1.1.2']</description>
+			<description>Requirements: ['AXTLS-4.1.1.2', 'AXTLS-27']</description>
 			</feature>
 		</and>
 			<feature name="Skeleton_Mode">
@@ -89,7 +89,7 @@
 			<description>Requirements: ['AXTLS-4.3']</description>
 			</feature>
 			<feature name="X509_Cert_Generation">
-			<description>Requirements: ['AXTLS-4.4']</description>
+			<description>Requirements: ['AXTLS-4.4', 'AXTLS-27']</description>
 			</feature>
 			<feature name="PEM_Format">
 			<description>Requirements: ['AXTLS-4.5', 'AXTLS-17']</description>
@@ -368,6 +368,15 @@
 			<imp>
 				<var>LUA_Language_Sample</var>
 				<var>LUA_Bindings</var>
+			</imp>
+		</rule>
+		<rule>
+		<description>Constraint Requirement: AXTLS-27</description>
+			<imp>
+				<var>SSL_Testing</var>
+				<not>
+				<var>X509_Cert_Generation</var>
+				</not>
 			</imp>
 		</rule>
 	</constraints>

@@ -74,3 +74,4 @@ Requirement ID,Requirement Specification,Rule,Parent Feature,Children Features,S
 "AXTLS-24","The Java language sample requires the Java bindings","R7","Java_Language_Sample","Java_Bindings","synthesized from axTLS-2.1.5 Config.In"
 "AXTLS-25","The Perl language sample requires the Perl bindings","R7","Perl_Language_Sample","Perl_Bindings","synthesized from axTLS-2.1.5 Config.In"
 "AXTLS-26","The LUA language sample requires the LUA bindings","R7","LUA_Language_Sample","LUA_Bindings","synthesized from axTLS-2.1.5 Config.In"
+"AXTLS-27","The SSL_Testing excludes the X509_Cert_Generation","R7","SSL_Testing","X509_Cert_Generation","synthesized from axTLS-2.1.5 Config.In"

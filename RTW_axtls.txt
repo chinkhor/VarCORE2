@@ -589,3 +589,12 @@ Parent --> LUA_Language_Sample
 Child --> LUA_Bindings
 Req --> The "LUA language sample" requires the "LUA bindings"
 Source --> synthesized from axTLS-2.1.5 Config.In
+
+ID --> AXTLS-27
+Valid --> 1
+Rule --> R7
+Parent --> SSL_Testing
+Child --> X509_Cert_Generation
+Req --> The "SSL_Testing" excludes the "X509_Cert_Generation"
+Source --> synthesized from axTLS-2.1.5 Config.In
+
