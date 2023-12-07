@@ -9,6 +9,7 @@ make clean >>buildtest.log 2>&1
 cp ../axtls_fix/generate_SWIG_interface.pl bindings/.
 cp ../axtls_fix/Makefile bindings/java/.
 cp ../axtls_fix/SSLClient.java bindings/java/.
+# apply fixes to resolve build error caused by enabling CONFIG_SSL_TEST and CONFIG_SSL_CTX_MUTEXING
 cp ../axtls_fix/ssltest.c ssl/test/.
 # inject 3-way error
 cp ../axtls_inject/tls1.c ssl/.
