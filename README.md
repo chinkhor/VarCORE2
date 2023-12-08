@@ -8,7 +8,7 @@ Ensure the following software are installed: Git, Make, CMake, GCC.
 
 Download VarCORE+:
 
-    git clone: https://github/chinkhor/VarCORE2.git
+    git clone https://github/chinkhor/VarCORE2.git
 
 ## Evaluation
 
@@ -20,7 +20,7 @@ Evaluate VarCORE+ on axTLS:
 
     ./runAxtlsRTW.sh
 
-## Automation Note:
+## Evaluation Automation Notes:
 
 The scripts will run the following automatically:
 
