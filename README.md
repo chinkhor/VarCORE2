@@ -1,22 +1,22 @@
 # VarCORE+
 
-VarCORE^+^ is a framework used for requirement analysis and verification. 
+VarCORE<sup>+</sup> is a framework used for requirement analysis and verification. 
 
 ## Setup (Linux only)
 
 Ensure the following software are installed: Git, Make, CMake, GCC.
 
-Download VarCORE^+^:
+Download VarCORE<sup>+</sup>:
 
     git clone https://github/chinkhor/VarCORE2.git
 
 ## Evaluation
 
-Evaluate VarCORE^+& on cFE TIME (TIME module of NASA cFS):
+Evaluate VarCORE<sup>+</sup> on cFE TIME (TIME module of NASA cFS):
 
     ./runCfsRTW.sh  
 
-Evaluate VarCORE^+^ on axTLS:
+Evaluate VarCORE<sup>+</sup> on axTLS:
 
     ./runAxtlsRTW.sh
 
