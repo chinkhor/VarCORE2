@@ -1,4 +1,4 @@
-# VarCORE+
+# VarCORE<sup>+</sup>
 
 VarCORE<sup>+</sup> is a framework used for requirement analysis and verification. 
 
