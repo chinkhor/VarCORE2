@@ -9,6 +9,7 @@ Ensure the following software are installed: Git, Make, CMake, GCC.
 Download VarCORE<sup>+</sup>:
 
     git clone https://github/chinkhor/VarCORE2.git
+    cd VarCORE2
 
 ## Evaluation
 
