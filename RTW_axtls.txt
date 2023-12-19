@@ -107,7 +107,7 @@ Valid --> 1
 Rule --> R3
 Parent --> SSL_Library
 Child --> SSL_Protocol
-Req --> The "SSL library" shall select "SSL protocol"
+Req --> The "SSL library" may select "SSL protocol"
 Source --> synthesized from axTLS-2.1.5 menuconfig
 
 ID --> AXTLS-4.2.1
