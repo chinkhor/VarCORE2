@@ -28,7 +28,10 @@ echo "Running cFS Time Build Test"
 cp -r config cFS/.
 cp runCfsBuildTest.sh cFS/.
 cd cFS
-bash ./runCfsBuildTest.sh > result.txt
+if test -e "result.txt"; then
+    rm result.txt
+fi
+bash ./runCfsBuildTest.sh | tee -a result.txt
 echo
 echo "Analyzing cFS Build Test result"
 cd ..
