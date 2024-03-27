@@ -35,7 +35,10 @@ echo "Running axTLS Build Test"
 cp -r config axtls-code/config/.
 cp runAxtlsBuildTest.sh axtls-code/.
 cd axtls-code
-bash ./runAxtlsBuildTest.sh > result.txt
+if test -e "result.txt"; then
+    rm result.txt
+fi
+bash ./runAxtlsBuildTest.sh | tee -a result.txt
 echo
 echo "Analyzing axTLS Build Test result"
 cd ..
