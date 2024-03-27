@@ -152,7 +152,8 @@ class RTW:
         entry.Children = self.parseRTWEntry(lines[index+4], True)
         entry.Req = self.parseRTWEntry(lines[index+5], False)
         entry.Source = self.parseRTWEntry(lines[index+6], False)
-        self.table[entry.ID] = entry
+        if entry.Valid == 1:
+            self.table[entry.ID] = entry
         
     # parse the input RTW file to extract and construct RTW entries
     def parseRTW(self, filename):
@@ -277,9 +278,20 @@ class RTW:
                 childnode.parent = node
                 node.children.append(childnode)
 
+    def findRoot(self):
+        first_key = list(self.table.keys())[0]
+        entry = self.table[first_key]
+        node = self.features[entry.Parent]
+        while node.parent is not None:
+            node = node.parent
+        self.root = node
+        self.root.printNode()
+
     # analyze the RTW tree using "BFS" and set each node's validity
     # call out the node(s) which are not valid (disconnected nodes which have no parent, not appear in the tree)
     def analyzeRTWTree(self):
+        if self.root is None:
+            self.findRoot()
         priorityQ = []
         priorityQ.append(self.root)
         while len(priorityQ) > 0:
