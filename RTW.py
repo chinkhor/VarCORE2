@@ -111,7 +111,7 @@ class RTW:
         # construct feature model in XML form - need RTW table, RTW nodes, RTW tree, RTW constraints 
         self.constructXMLFeatureModel()
         # export RTW table to CSV file - need RTW table
-        self.exportRTW2CSV(filename.replace(".txt",".csv"))
+        self.exportRTW2CSV(filename[0].replace(".txt",".csv"))
         # export feature model to XML file - need feature model in XML form (represented by self.FM_XML)
         self.exportFeatureModel2XML(self.root.name.replace('_','') + "FeatureModel.xml")
             
@@ -156,20 +156,21 @@ class RTW:
             self.table[entry.ID] = entry
         
     # parse the input RTW file to extract and construct RTW entries
-    def parseRTW(self, filename):
-        try:
-            with open(filename, 'r') as f:
-                lines = f.readlines()
-            f.close()
-        except FileNotFoundError:
-            print("File '{}' is not found".format(filename))
-            return False
-        for index in range(len(lines)):
-            # every valid RTW entry starts with ID (first element of RTW entry) 
-            if lines[index].strip().startswith('ID'):
-                if self.validateRTWEntry(index, lines):
-                    self.constructRTWEntry(index, lines)
-                    index += RTW_Entry.elements
+    def parseRTW(self, files):
+        for filename in files:
+            try:
+                with open(filename, 'r') as f:
+                    lines = f.readlines()
+                f.close()
+            except FileNotFoundError:
+                print("File '{}' is not found".format(filename))
+                return False
+            for index in range(len(lines)):
+                # every valid RTW entry starts with ID (first element of RTW entry) 
+                if lines[index].strip().startswith('ID'):
+                    if self.validateRTWEntry(index, lines):
+                        self.constructRTWEntry(index, lines)
+                        index += RTW_Entry.elements
         return True
     
     # export the RTW table to CSV file
@@ -216,13 +217,14 @@ class RTW:
             entry = self.table[ID]
             if (not entry.Valid) or (entry.Parent == 'root'):
                 continue
-            node = entry.Parent
+            node = entry.Parent.strip()
             if node not in self.features:
                 self.features[node] = RTW_Node(node)
             # add requirement ID to the node's requirement tracing list (variable tracedReq)
             if entry.ID not in self.features[node].tracedReq:
                 self.features[node].tracedReq.append(entry.ID)
             for child in entry.Children:
+                child = child.strip()
                 if child not in self.features:
                     self.features[child] = RTW_Node(child)
                 if entry.ID not in self.features[child].tracedReq:
@@ -230,21 +232,26 @@ class RTW:
                     
     # map features to pre-processor directive macros (codes) in implementation
     # has dependency on constructRTWFeatures to construct RTW node first
-    def setupFeatureMap(self, filename):
-        try:
-            self.feature_map = {}
-            with open(filename, 'r') as f:
-                lines = f.readlines();
-                for line in lines:
-                    line = line.split()
-                    # if len is 1 or less, not a valid entry
-                    if len(line) <= 1:
-                        continue
-                    self.feature_map[line[0]] = line[1]
-                f.close()
-        except FileNotFoundError:
-            print("File '{}' is not found".format(filename))
-            return False
+    def setupFeatureMap(self, files):
+        self.feature_map = {}
+        my_string = ""
+        print(files)
+        for filename in files:
+            try:
+                with open(filename, 'r') as f:
+                    lines = f.readlines()
+                    for line in lines:
+                        line = line.split()
+                        # if len is 1 or less, not a valid entry
+                        if len(line) <= 1:
+                            continue
+                        line[0] = line[0].strip()
+                        line[1] = line[1].strip()
+                        self.feature_map[line[0]] = line[1]
+                    f.close()
+            except FileNotFoundError:
+                print("File '{}' is not found".format(filename))
+                return False
         for feature in self.features:
             if feature not in self.feature_map:
                 node = self.features[feature]
@@ -285,7 +292,7 @@ class RTW:
         while node.parent is not None:
             node = node.parent
         self.root = node
-        self.root.printNode()
+        #self.root.printNode()
 
     # analyze the RTW tree using "BFS" and set each node's validity
     # call out the node(s) which are not valid (disconnected nodes which have no parent, not appear in the tree)
@@ -362,8 +369,14 @@ class RTW:
         dict_keyword_start = {'R2': '\t\t<and ', 'R3': '\t\t<and ', 'R4': '\t\t<alt ', 'R5': '\t\t<or ', 'R6': '\t\t<and '}
         dict_keyword_end = {'R2': '\t\t</and>\n', 'R3': '\t\t</and>\n', 'R4': '\t\t</alt>\n', 'R5': '\t\t</or>\n', 'R6': '\t\t</and>\n'}
         if node.isLeaf():
-            self.FM_XML.append('\t\t\t<feature name="' + node.name + '">\n')
-             # add requirement ID as description for traceability
+            line = '\t\t\t<feature '
+            if node.abstract:
+                line = line + 'abstract="true" '
+            if node.rule == 'R2' or node.private == 'R2':
+                line = line + 'mandatory="true" '
+            line = line + 'name="' + node.name + '">\n'
+            self.FM_XML.append(line)
+            # add requirement ID as description for traceability
             self.FM_XML.append('\t\t\t<description>Requirements: ' + str(node.tracedReq) + '</description>\n')
             self.FM_XML.append('\t\t\t</feature>\n')
             return
