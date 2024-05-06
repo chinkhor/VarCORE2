@@ -1,0 +1,2007 @@
+ID --> PX4-0
+Valid --> 1
+Rule --> R1
+Parent --> root
+Child --> PX4_Firmware
+Req --> The PX4_Firmware is root
+Source --> 
+
+ID --> PX4-1 
+Valid --> 1
+Rule --> R2
+Parent --> PX4_Firmware
+Child --> Toolchain
+Req --> The PX4_Firmware shall select Toolchain
+Source --> 
+
+ID --> PX4-1.1 
+Valid --> 1
+Rule --> R2
+Parent --> Toolchain
+Child --> Platform
+Req --> The Toolchain shall select Platform
+Source --> 
+
+ID --> PX4-1.1.1
+Valid --> 1
+Rule --> R4
+Parent --> Platform
+Child --> PLATFORM_NUTTX, PLATFORM_POSIX, PLATFORM_QURT, PLATFORM_ROS2
+Req --> The Platform shall select one and only one of PLATFORM_NUTTX, PLATFORM_POSIX, PLATFORM_QURT or PLATFORM_ROS2
+Source --> 
+
+ID --> PX4-1.2 
+Valid --> 1
+Rule --> R3
+Parent --> Toolchain
+Child --> BOARD_LOCKSTEP
+Req --> The Toolchain may select BOARD_LOCKSTEP
+Source --> 
+
+ID --> PX4-1.3 
+Valid --> 1
+Rule --> R3
+Parent --> Toolchain
+Child --> BOARD_NOLOCKSTEP
+Req --> The Toolchain may select BOARD_NOLOCKSTEP
+Source --> 
+
+ID --> PX4-1.4 
+Valid --> 1
+Rule --> R3
+Parent --> Toolchain
+Child --> BOARD_LINUX_TARGET
+Req --> The Toolchain may select BOARD_LINUX_TARGET
+Source --> 
+
+ID --> PX4-1.5 
+Valid --> 1
+Rule --> R3
+Parent --> Toolchain
+Child --> BOARD_LTO
+Req --> The Toolchain may select BOARD_LTO
+Source --> 
+
+ID --> PX4-1.6 
+Valid --> 1
+Rule --> R3
+Parent --> Toolchain
+Child --> BOARD_FULL_OPTIMIZATION
+Req --> The Toolchain may select BOARD_FULL_OPTIMIZATION
+Source --> 
+
+ID --> PX4-1.7 
+Valid --> 1
+Rule --> R3
+Parent --> Toolchain
+Child --> BOARD_CONSTRAINED_FLASH
+Req --> The Toolchain may select BOARD_CONSTRAINED_FLASH
+Source --> 
+
+ID --> PX4-1.8 
+Valid --> 1
+Rule --> R3
+Parent --> Toolchain
+Child --> BOARD_NO_HELP
+Req --> The Toolchain may select BOARD_NO_HELP
+Source --> 
+
+ID --> PX4-1.9 
+Valid --> 1
+Rule --> R3
+Parent --> Toolchain
+Child --> BOARD_CONSTRAINED_MEMORY
+Req --> The Toolchain may select BOARD_CONSTRAINED_MEMORY
+Source --> 
+
+ID --> PX4-1.10
+Valid --> 1
+Rule --> R3
+Parent --> Toolchain
+Child --> BOARD_EXTERNAL_METADATA
+Req --> The Toolchain may select BOARD_EXTERNAL_METADATA
+Source --> 
+
+ID --> PX4-1.11
+Valid --> 1
+Rule --> R2
+Parent --> Toolchain
+Child --> BOARD_PLATFORM
+Req --> The Toolchain shall set BOARD_PLATFORM
+Source --> 
+
+ID --> PX4-1.11.1
+Valid --> 1
+Rule --> R4
+Parent --> BOARD_PLATFORM
+Child --> BOARD_PLATFORM_eq_nuttx, BOARD_PLATFORM_eq_posix, BOARD_PLATFORM_eq_qurt, BOARD_PLATFORM_eq_ros2
+Req --> The BOARD_PLATFORM shall set one and only one of BOARD_PLATFORM="nuttx", BOARD_PLATFORM="posix", BOARD_PLATFORM="qurt" or BOARD_PLATFORM="ros2"
+Source --> 
+
+ID --> PX4-1.12
+Valid --> 1
+Rule --> R2
+Parent --> Toolchain
+Child --> BOARD_TOOLCHAIN
+Req --> The Toolchain shall set BOARD_TOOLCHAIN
+Source --> 
+
+ID --> PX4-1.12.1
+Valid --> 1
+Rule --> R4
+Parent --> BOARD_TOOLCHAIN
+Child --> BOARD_TOOLCHAIN_eq_None, BOARD_TOOLCHAIN_eq_arm-none-eabi, BOARD_TOOLCHAIN_eq_qurt, BOARD_TOOLCHAIN_eq_aarch64-linux-gnu, BOARD_TOOLCHAIN_eq_arm-linux-gnueabihf
+Req --> The BOARD_TOOLCHAIN shall set one and only one of BOARD_TOOLCHAIN="", BOARD_TOOLCHAIN="arm-none-eabi", BOARD_TOOLCHAIN="qurt", BOARD_TOOLCHAIN="aarch64-linux-gnu" or BOARD_TOOLCHAIN="arm-linux-gnueabihf"
+Source --> 
+
+ID --> PX4-1.13
+Valid --> 1
+Rule --> R2
+Parent --> Toolchain
+Child --> BOARD_ARCHITECTURE
+Req --> The Toolchain shall set BOARD_ARCHITECTURE
+Source --> 
+
+ID --> PX4-1.13.1
+Valid --> 1
+Rule --> R4
+Parent --> BOARD_ARCHITECTURE
+Child --> BOARD_ARCHITECTURE_eq_None, BOARD_ARCHITECTURE_eq_cortex-m3, BOARD_ARCHITECTURE_eq_cortex-m4, BOARD_ARCHITECTURE_eq_cortex-m7, BOARD_ARCHITECTURE_eq_cortex-m0plus, BOARD_ARCHITECTURE_eq_cortex-a53, BOARD_ARCHITECTURE_eq_cortex-a8
+Req --> The BOARD_ARCHITECTURE shall set one and only one of BOARD_ARCHITECTURE="", BOARD_ARCHITECTURE="cortex-m3", BOARD_ARCHITECTURE="cortex-m4", BOARD_ARCHITECTURE="cortex-m7", BOARD_ARCHITECTURE="cortex-m0plus", BOARD_ARCHITECTURE="cortex-a53", BOARD_ARCHITECTURE="cortex-a8"
+Source --> 
+
+ID --> PX4-1.14
+Valid --> 1
+Rule --> R2
+Parent --> Toolchain
+Child --> BOARD_ROMFSROOT
+Req --> The Toolchain shall set BOARD_ROMFSROOT
+Source --> 
+
+ID --> PX4-1.14.1
+Valid --> 1
+Rule --> R4
+Parent --> BOARD_ROMFSROOT
+Child --> BOARD_ROMFSROOT_eq_None, BOARD_ROMFSROOT_eq_px4fmu_common, BOARD_ROMFSROOT_eq_cannode
+Req --> The BOARD_ROMFSROOT shall set one and only one of BOARD_ROMFSROOT="", BOARD_ROMFSROOT="px4fmu_common" or BOARD_ROMFSROOT="cannode"
+Source --> 
+
+ID --> PX4-1.15
+Valid --> 1
+Rule --> R3
+Parent --> Toolchain
+Child --> BOARD_ROOTFSDIR
+Req --> The Toolchain may set BOARD_ROOTFSDIR
+Source --> 
+
+ID --> PX4-1.15.1
+Valid --> 1
+Rule --> R4
+Parent --> BOARD_ROOTFSDIR
+Child --> BOARD_ROOTFSDIR_eq_dot, BOARD_ROOTFSDIR_eq_data_px4
+Req --> The BOARD_ROOTFSDIR shall set one and only one of BOARD_ROOTFSDIR="." or BOARD_ROOTFSDIR="/data/px4"
+Source --> 
+
+ID --> PX4-1.16
+Valid --> 1
+Rule --> R2
+Parent --> Toolchain
+Child --> BOARD_LINKER_PREFIX
+Req --> The Toolchain shall set BOARD_LINKER_PREFIX
+Source --> 
+
+ID --> PX4-1.16.1
+Valid --> 1
+Rule --> R2
+Parent --> BOARD_LINKER_PREFIX
+Child --> BOARD_LINKER_PREFIX_eq_None
+Req --> The BOARD_LINKER_PREFIX shall set BOARD_LINKER_PREFIX=""
+Source --> 
+
+ID --> PX4-1.17
+Valid --> 1
+Rule --> R2
+Parent --> Toolchain
+Child --> BOARD_COMPILE_DEFINITIONS
+Req --> The Toolchain shall set BOARD_COMPILE_DEFINITIONS
+Source --> 
+
+ID --> PX4-1.17.1
+Valid --> 1
+Rule --> R4
+Parent --> BOARD_COMPILE_DEFINITIONS
+Child --> BOARD_COMPILE_DEFINITIONS_eq_None, BOARD_COMPILE_DEFINITIONS_eq_-Wno-narrowing, BOARD_COMPILE_DEFINITIONS_eq_-DORB_USE_PUBLISHER_RULES, BOARD_COMPILE_DEFINITIONS_eq_-DUSE_S_RGB_LED_DMA
+Req --> The BOARD_COMPILE_DEFINITIONS shall set one and only of BOARD_COMPILE_DEFINITIONS="", BOARD_COMPILE_DEFINITIONS="-Wno-narrowing", BOARD_COMPILE_DEFINITIONS="-DORB_USE_PUBLISHER_RULES" or BOARD_COMPILE_DEFINITIONS="-DUSE_S_RGB_LED_DMA"
+Source --> 
+
+ID --> PX4-1.18
+Valid --> 1
+Rule --> R3
+Parent --> Toolchain
+Child --> BOARD_IO
+Req --> The Toolchain may set BOARD_IO
+Source --> 
+
+ID --> PX4-1.18.1
+Valid --> 1
+Rule --> R4
+Parent --> BOARD_IO
+Child --> BOARD_IO_eq_px4_io-v2_default, BOARD_IO_eq_cubepilot_io-v2_default
+Req --> The BOARD_IO shall set one and only one of BOARD_IO="px4_io-v2_default" or BOARD_IO="cubepilot_io-v2_default"
+Source --> 
+
+ID --> PX4-2 
+Valid --> 1
+Rule --> R3
+Parent --> PX4_Firmware
+Child --> BOARD_TESTING
+Req --> The PX4_Firmware may select BOARD_TESTING
+Source --> 
+
+ID --> PX4-3 
+Valid --> 1
+Rule --> R3
+Parent --> PX4_Firmware
+Child --> BOARD_ETHERNET
+Req --> The PX4_Firmware may select BOARD_ETHERNET
+Source --> 
+
+ID --> PX4-4
+Valid --> 1
+Rule --> R3
+Parent --> PX4_Firmware
+Child --> BOARD_CRYPTO
+Req --> The PX4_Firmware may select BOARD_CRYPTO
+Source --> 
+
+ID --> PX4-5
+Valid --> 1
+Rule --> R3
+Parent --> PX4_Firmware
+Child --> BOARD_PROTECTED
+Req --> The PX4_Firmware may select BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-5.1
+Valid --> 1
+Rule --> R2
+Parent --> BOARD_PROTECTED
+Child --> SYSTEMCMDS_LAUNCH_KMOD
+Req --> The BOARD_PROTECTED share select SYSTEMCMDS_LAUNCH_KMOD
+Source --> 
+
+ID --> PX4-5.2
+Valid --> 1
+Rule --> R2
+Parent --> BOARD_PROTECTED
+Child --> USER_LAUNCH_KMOD
+Req --> The BOARD_PROTECTED share select USER_LAUNCH_KMOD
+Source --> 
+
+ID --> PX4-6
+Valid --> 1
+Rule --> R2
+Parent --> PX4_Firmware
+Child --> Serial_ports
+Req --> The PX4_Firmware shall select Serial_ports
+Source --> 
+
+ID --> PX4-6.1
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> URT6_tty_port
+Req --> The Serial_ports may set URT6_tty_port
+Source --> 
+
+ID --> PX4-6.1.1
+Valid --> 1
+Rule --> R4
+Parent --> URT6_tty_port
+Child --> BOARD_SERIAL_URT6_eq_None, BOARD_SERIAL_URT6_eq_dev_ttyS0, BOARD_SERIAL_URT6_eq_dev_ttyS1, BOARD_SERIAL_URT6_eq_dev_ttyS2, BOARD_SERIAL_URT6_eq_dev_ttyS3, BOARD_SERIAL_URT6_eq_dev_ttyS4, BOARD_SERIAL_URT6_eq_dev_ttyS5, BOARD_SERIAL_URT6_eq_dev_ttyS6, BOARD_SERIAL_URT6_eq_dev_ttyS7
+Req --> The URT6_tty_port shall set one and only one of BOARD_SERIAL_URT6="", BOARD_SERIAL_URT6="/dev/ttyS0", BOARD_SERIAL_URT6="/dev/ttyS1", BOARD_SERIAL_URT6="/dev/ttyS2", BOARD_SERIAL_URT6="/dev/ttyS3", BOARD_SERIAL_URT6="/dev/ttyS4", BOARD_SERIAL_URT6="/dev/ttyS5", BOARD_SERIAL_URT6="/dev/ttyS6"  or BOARD_SERIAL_URT6="/dev/ttyS7"
+Source --> 
+
+ID --> PX4-6.2
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> BOARD_SERIAL_URT6
+Req --> The Serial_ports may set BOARD_SERIAL_URT6
+Source --> 
+
+ID --> PX4-6.3
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> GPS1_tty_port
+Req --> The Serial_ports may set GPS1_tty_port
+Source --> 
+
+ID --> PX4-6.3.1
+Valid --> 1
+Rule --> R4
+Parent --> GPS1_tty_port
+Child --> BOARD_SERIAL_GPS1_eq_None, BOARD_SERIAL_GPS1_eq_dev_ttyS0, BOARD_SERIAL_GPS1_eq_dev_ttyS1, BOARD_SERIAL_GPS1_eq_dev_ttyS2, BOARD_SERIAL_GPS1_eq_dev_ttyS3, BOARD_SERIAL_GPS1_eq_dev_ttyS4, BOARD_SERIAL_GPS1_eq_dev_ttyS5, BOARD_SERIAL_GPS1_eq_dev_ttyS6, BOARD_SERIAL_GPS1_eq_dev_ttyS7
+Req --> The GPS1_tty_port shall set one and only one of BOARD_SERIAL_GPS1="", BOARD_SERIAL_GPS1="/dev/ttyS0", BOARD_SERIAL_GPS1="/dev/ttyS1", BOARD_SERIAL_GPS1="/dev/ttyS2", BOARD_SERIAL_GPS1="/dev/ttyS3", BOARD_SERIAL_GPS1="/dev/ttyS4", BOARD_SERIAL_GPS1="/dev/ttyS5", BOARD_SERIAL_GPS1="/dev/ttyS6"  or BOARD_SERIAL_GPS1="/dev/ttyS7"
+Source --> 
+
+ID --> PX4-6.4
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> BOARD_SERIAL_GPS1
+Req --> The Serial_ports may set BOARD_SERIAL_GPS1
+Source --> 
+
+ID --> PX4-6.5
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> GPS2_tty_port
+Req --> The Serial_ports may set GPS2_tty_port
+Source --> 
+
+ID --> PX4-6.5.1
+Valid --> 1
+Rule --> R4
+Parent --> GPS2_tty_port
+Child --> BOARD_SERIAL_GPS2_eq_None, BOARD_SERIAL_GPS2_eq_dev_ttyS0, BOARD_SERIAL_GPS2_eq_dev_ttyS1, BOARD_SERIAL_GPS2_eq_dev_ttyS2, BOARD_SERIAL_GPS2_eq_dev_ttyS3, BOARD_SERIAL_GPS2_eq_dev_ttyS4, BOARD_SERIAL_GPS2_eq_dev_ttyS5, BOARD_SERIAL_GPS2_eq_dev_ttyS6, BOARD_SERIAL_GPS2_eq_dev_ttyS7
+Req --> The GPS2_tty_port shall set one and only one of BOARD_SERIAL_GPS2="", BOARD_SERIAL_GPS2="/dev/ttyS0", BOARD_SERIAL_GPS2="/dev/ttyS1", BOARD_SERIAL_GPS2="/dev/ttyS2", BOARD_SERIAL_GPS2="/dev/ttyS3", BOARD_SERIAL_GPS2="/dev/ttyS4", BOARD_SERIAL_GPS2="/dev/ttyS5", BOARD_SERIAL_GPS2="/dev/ttyS6"  or BOARD_SERIAL_GPS2="/dev/ttyS7"
+Source --> 
+
+ID --> PX4-6.6
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> BOARD_SERIAL_GPS2
+Req --> The Serial_ports may set BOARD_SERIAL_GPS2
+Source --> 
+
+ID --> PX4-6.7
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> GPS3_tty_port
+Req --> The Serial_ports may set GPS3_tty_port
+Source --> 
+
+ID --> PX4-6.7.1
+Valid --> 1
+Rule --> R4
+Parent --> GPS3_tty_port
+Child --> BOARD_SERIAL_GPS3_eq_None, BOARD_SERIAL_GPS3_eq_dev_ttyS0, BOARD_SERIAL_GPS3_eq_dev_ttyS1, BOARD_SERIAL_GPS3_eq_dev_ttyS2, BOARD_SERIAL_GPS3_eq_dev_ttyS3, BOARD_SERIAL_GPS3_eq_dev_ttyS4, BOARD_SERIAL_GPS3_eq_dev_ttyS5, BOARD_SERIAL_GPS3_eq_dev_ttyS6, BOARD_SERIAL_GPS3_eq_dev_ttyS7
+Req --> The GPS3_tty_port shall set one and only one of BOARD_SERIAL_GPS3="", BOARD_SERIAL_GPS3="/dev/ttyS0", BOARD_SERIAL_GPS3="/dev/ttyS1", BOARD_SERIAL_GPS3="/dev/ttyS2", BOARD_SERIAL_GPS3="/dev/ttyS3", BOARD_SERIAL_GPS3="/dev/ttyS4", BOARD_SERIAL_GPS3="/dev/ttyS5", BOARD_SERIAL_GPS3="/dev/ttyS6"  or BOARD_SERIAL_GPS3="/dev/ttyS7"
+Source --> 
+
+ID --> PX4-6.8
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> BOARD_SERIAL_GPS3
+Req --> The Serial_ports may set BOARD_SERIAL_GPS3
+Source --> 
+
+ID --> PX4-6.9
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> GPS4_tty_port
+Req --> The Serial_ports may set GPS4_tty_port
+Source --> 
+
+ID --> PX4-6.9.1
+Valid --> 1
+Rule --> R4
+Parent --> GPS4_tty_port
+Child --> BOARD_SERIAL_GPS4_eq_None, BOARD_SERIAL_GPS4_eq_dev_ttyS0, BOARD_SERIAL_GPS4_eq_dev_ttyS1, BOARD_SERIAL_GPS4_eq_dev_ttyS2, BOARD_SERIAL_GPS4_eq_dev_ttyS3, BOARD_SERIAL_GPS4_eq_dev_ttyS4, BOARD_SERIAL_GPS4_eq_dev_ttyS5, BOARD_SERIAL_GPS4_eq_dev_ttyS6, BOARD_SERIAL_GPS4_eq_dev_ttyS7
+Req --> The GPS4_tty_port shall set one and only one of BOARD_SERIAL_GPS4="", BOARD_SERIAL_GPS4="/dev/ttyS0", BOARD_SERIAL_GPS4="/dev/ttyS1", BOARD_SERIAL_GPS4="/dev/ttyS2", BOARD_SERIAL_GPS4="/dev/ttyS3", BOARD_SERIAL_GPS4="/dev/ttyS4", BOARD_SERIAL_GPS4="/dev/ttyS5", BOARD_SERIAL_GPS4="/dev/ttyS6" or BOARD_SERIAL_GPS4="/dev/ttyS7"
+Source --> 
+
+ID --> PX4-6.10
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> BOARD_SERIAL_GPS4
+Req --> The Serial_ports may set BOARD_SERIAL_GPS4
+Source --> 
+
+ID --> PX4-6.11
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> GPS5_tty_port
+Req --> The Serial_ports may set GPS5_tty_port
+Source --> 
+
+ID --> PX4-6.11.1
+Valid --> 1
+Rule --> R4
+Parent --> GPS5_tty_port
+Child --> BOARD_SERIAL_GPS5_eq_None, BOARD_SERIAL_GPS5_eq_dev_ttyS0, BOARD_SERIAL_GPS5_eq_dev_ttyS1, BOARD_SERIAL_GPS5_eq_dev_ttyS2, BOARD_SERIAL_GPS5_eq_dev_ttyS3, BOARD_SERIAL_GPS5_eq_dev_ttyS4, BOARD_SERIAL_GPS5_eq_dev_ttyS5, BOARD_SERIAL_GPS5_eq_dev_ttyS6, BOARD_SERIAL_GPS5_eq_dev_ttyS7
+Req --> The GPS5_tty_port shall set one and only one of BOARD_SERIAL_GPS5="", BOARD_SERIAL_GPS5="/dev/ttyS0", BOARD_SERIAL_GPS5="/dev/ttyS1", BOARD_SERIAL_GPS5="/dev/ttyS2", BOARD_SERIAL_GPS5="/dev/ttyS3", BOARD_SERIAL_GPS5="/dev/ttyS4", BOARD_SERIAL_GPS5="/dev/ttyS5", BOARD_SERIAL_GPS5="/dev/ttyS6"  or BOARD_SERIAL_GPS5="/dev/ttyS7"
+Source --> 
+
+ID --> PX4-6.12
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> BOARD_SERIAL_GPS5
+Req --> The Serial_ports may set BOARD_SERIAL_GPS5
+Source --> 
+
+ID --> PX4-6.13
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> TEL1_tty_port
+Req --> The Serial_ports may set TEL1_tty_port
+Source --> 
+
+ID --> PX4-6.13.1
+Valid --> 1
+Rule --> R4
+Parent --> TEL1_tty_port
+Child --> BOARD_SERIAL_TEL1_eq_None, BOARD_SERIAL_TEL1_eq_dev_ttyS0, BOARD_SERIAL_TEL1_eq_dev_ttyS1, BOARD_SERIAL_TEL1_eq_dev_ttyS2, BOARD_SERIAL_TEL1_eq_dev_ttyS3, BOARD_SERIAL_TEL1_eq_dev_ttyS4, BOARD_SERIAL_TEL1_eq_dev_ttyS5, BOARD_SERIAL_TEL1_eq_dev_ttyS6, BOARD_SERIAL_TEL1_eq_dev_ttyS7
+Req --> The TEL1_tty_port shall set one and only one of BOARD_SERIAL_TEL1="", BOARD_SERIAL_TEL1="/dev/ttyS0", BOARD_SERIAL_TEL1="/dev/ttyS1", BOARD_SERIAL_TEL1="/dev/ttyS2", BOARD_SERIAL_TEL1="/dev/ttyS3", BOARD_SERIAL_TEL1="/dev/ttyS4", BOARD_SERIAL_TEL1="/dev/ttyS5", BOARD_SERIAL_TEL1="/dev/ttyS6"  or BOARD_SERIAL_TEL1="/dev/ttyS7"
+Source --> 
+
+ID --> PX4-6.14
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> BOARD_SERIAL_TEL1
+Req --> The Serial_ports may set BOARD_SERIAL_TEL1
+Source --> 
+
+ID --> PX4-6.15
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> TEL2_tty_port
+Req --> The Serial_ports may set TEL2_tty_port
+Source --> 
+
+ID --> PX4-6.15.1
+Valid --> 1
+Rule --> R4
+Parent --> TEL2_tty_port
+Child --> BOARD_SERIAL_TEL2_eq_None, BOARD_SERIAL_TEL2_eq_dev_ttyS0, BOARD_SERIAL_TEL2_eq_dev_ttyS1, BOARD_SERIAL_TEL2_eq_dev_ttyS2, BOARD_SERIAL_TEL2_eq_dev_ttyS3, BOARD_SERIAL_TEL2_eq_dev_ttyS4, BOARD_SERIAL_TEL2_eq_dev_ttyS5, BOARD_SERIAL_TEL2_eq_dev_ttyS6, BOARD_SERIAL_TEL2_eq_dev_ttyS7
+Req --> The TEL2_tty_port shall set one and only one of BOARD_SERIAL_TEL2="", BOARD_SERIAL_TEL2="/dev/ttyS0", BOARD_SERIAL_TEL2="/dev/ttyS1", BOARD_SERIAL_TEL2="/dev/ttyS2", BOARD_SERIAL_TEL2="/dev/ttyS3", BOARD_SERIAL_TEL2="/dev/ttyS4", BOARD_SERIAL_TEL2="/dev/ttyS5", BOARD_SERIAL_TEL2="/dev/ttyS6"  or BOARD_SERIAL_TEL2="/dev/ttyS7"
+Source --> 
+
+ID --> PX4-6.16
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> BOARD_SERIAL_TEL2
+Req --> The Serial_ports may set BOARD_SERIAL_TEL2
+Source --> 
+
+ID --> PX4-6.17
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> TEL3_tty_port
+Req --> The Serial_ports may set TEL3_tty_port
+Source --> 
+
+ID --> PX4-6.17.1
+Valid --> 1
+Rule --> R4
+Parent --> TEL3_tty_port
+Child --> BOARD_SERIAL_TEL3_eq_None, BOARD_SERIAL_TEL3_eq_dev_ttyS0, BOARD_SERIAL_TEL3_eq_dev_ttyS1, BOARD_SERIAL_TEL3_eq_dev_ttyS2, BOARD_SERIAL_TEL3_eq_dev_ttyS3, BOARD_SERIAL_TEL3_eq_dev_ttyS4, BOARD_SERIAL_TEL3_eq_dev_ttyS5, BOARD_SERIAL_TEL3_eq_dev_ttyS6, BOARD_SERIAL_TEL3_eq_dev_ttyS7
+Req --> The TEL3_tty_port shall set one and only one of BOARD_SERIAL_TEL3="", BOARD_SERIAL_TEL3="/dev/ttyS0", BOARD_SERIAL_TEL3="/dev/ttyS1", BOARD_SERIAL_TEL3="/dev/ttyS2", BOARD_SERIAL_TEL3="/dev/ttyS3", BOARD_SERIAL_TEL3="/dev/ttyS4", BOARD_SERIAL_TEL3="/dev/ttyS5", BOARD_SERIAL_TEL3="/dev/ttyS6"  or BOARD_SERIAL_TEL3="/dev/ttyS7"
+Source --> 
+
+ID --> PX4-6.18
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> BOARD_SERIAL_TEL3
+Req --> The Serial_ports may set BOARD_SERIAL_TEL3
+Source --> 
+
+ID --> PX4-6.19
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> TEL4_tty_port
+Req --> The Serial_ports may set TEL4_tty_port
+Source --> 
+
+ID --> PX4-6.19.1
+Valid --> 1
+Rule --> R4
+Parent --> TEL4_tty_port
+Child --> BOARD_SERIAL_TEL4_eq_None, BOARD_SERIAL_TEL4_eq_dev_ttyS0, BOARD_SERIAL_TEL4_eq_dev_ttyS1, BOARD_SERIAL_TEL4_eq_dev_ttyS2, BOARD_SERIAL_TEL4_eq_dev_ttyS3, BOARD_SERIAL_TEL4_eq_dev_ttyS4, BOARD_SERIAL_TEL4_eq_dev_ttyS5, BOARD_SERIAL_TEL4_eq_dev_ttyS6, BOARD_SERIAL_TEL4_eq_dev_ttyS7
+Req --> The TEL4_tty_port shall set one and only one of BOARD_SERIAL_TEL4="", BOARD_SERIAL_TEL4="/dev/ttyS0", BOARD_SERIAL_TEL4="/dev/ttyS1", BOARD_SERIAL_TEL4="/dev/ttyS2", BOARD_SERIAL_TEL4="/dev/ttyS3", BOARD_SERIAL_TEL4="/dev/ttyS4", BOARD_SERIAL_TEL4="/dev/ttyS5", BOARD_SERIAL_TEL4="/dev/ttyS6"  or BOARD_SERIAL_TEL4="/dev/ttyS7"
+Source --> 
+
+ID --> PX4-6.20
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> BOARD_SERIAL_TEL4
+Req --> The Serial_ports may set BOARD_SERIAL_TEL4
+Source --> 
+
+ID --> PX4-6.21
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> TEL5_tty_port
+Req --> The Serial_ports may set TEL5_tty_port
+Source --> 
+
+ID --> PX4-6.21.1
+Valid --> 1
+Rule --> R4
+Parent --> TEL5_tty_port
+Child --> BOARD_SERIAL_TEL5_eq_None, BOARD_SERIAL_TEL5_eq_dev_ttyS0, BOARD_SERIAL_TEL5_eq_dev_ttyS1, BOARD_SERIAL_TEL5_eq_dev_ttyS2, BOARD_SERIAL_TEL5_eq_dev_ttyS3, BOARD_SERIAL_TEL5_eq_dev_ttyS4, BOARD_SERIAL_TEL5_eq_dev_ttyS5, BOARD_SERIAL_TEL5_eq_dev_ttyS6, BOARD_SERIAL_TEL5_eq_dev_ttyS7
+Req --> The TEL5_tty_port shall set one and only one of BOARD_SERIAL_TEL5="", BOARD_SERIAL_TEL5="/dev/ttyS0", BOARD_SERIAL_TEL5="/dev/ttyS1", BOARD_SERIAL_TEL5="/dev/ttyS2", BOARD_SERIAL_TEL5="/dev/ttyS3", BOARD_SERIAL_TEL5="/dev/ttyS4", BOARD_SERIAL_TEL5="/dev/ttyS5", BOARD_SERIAL_TEL5="/dev/ttyS6"  or BOARD_SERIAL_TEL5="/dev/ttyS7"
+Source --> 
+
+ID --> PX4-6.22
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> BOARD_SERIAL_TEL5
+Req --> The Serial_ports may set BOARD_SERIAL_TEL5
+Source --> 
+
+ID --> PX4-6.23
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> RC_tty_port
+Req --> The Serial_ports may set RC_tty_port
+Source --> 
+
+ID --> PX4-6.23.1
+Valid --> 1
+Rule --> R4
+Parent --> RC_tty_port
+Child --> BOARD_SERIAL_RC_eq_None, BOARD_SERIAL_RC_eq_dev_ttyS0, BOARD_SERIAL_RC_eq_dev_ttyS1, BOARD_SERIAL_RC_eq_dev_ttyS2, BOARD_SERIAL_RC_eq_dev_ttyS3, BOARD_SERIAL_RC_eq_dev_ttyS4, BOARD_SERIAL_RC_eq_dev_ttyS5, BOARD_SERIAL_RC_eq_dev_ttyS6, BOARD_SERIAL_RC_eq_dev_ttyS7
+Req --> The RC_tty_port shall set one and only one of BOARD_SERIAL_RC="", BOARD_SERIAL_RC="/dev/ttyS0", BOARD_SERIAL_RC="/dev/ttyS1", BOARD_SERIAL_RC="/dev/ttyS2", BOARD_SERIAL_RC="/dev/ttyS3", BOARD_SERIAL_RC="/dev/ttyS4", BOARD_SERIAL_RC="/dev/ttyS5", BOARD_SERIAL_RC="/dev/ttyS6"  or BOARD_SERIAL_RC="/dev/ttyS7"
+Source --> 
+
+ID --> PX4-6.24
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> BOARD_SERIAL_RC
+Req --> The Serial_ports may set BOARD_SERIAL_RC
+Source --> 
+
+ID --> PX4-6.25
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> WIFI_tty_port
+Req --> The Serial_ports may set WIFI_tty_port
+Source --> 
+
+ID --> PX4-6.25.1
+Valid --> 1
+Rule --> R4
+Parent --> WIFI_tty_port
+Child --> BOARD_SERIAL_WIFI_eq_None, BOARD_SERIAL_WIFI_eq_dev_ttyS0, BOARD_SERIAL_WIFI_eq_dev_ttyS1, BOARD_SERIAL_WIFI_eq_dev_ttyS2, BOARD_SERIAL_WIFI_eq_dev_ttyS3, BOARD_SERIAL_WIFI_eq_dev_ttyS4, BOARD_SERIAL_WIFI_eq_dev_ttyS5, BOARD_SERIAL_WIFI_eq_dev_ttyS6, BOARD_SERIAL_WIFI_eq_dev_ttyS7
+Req --> The WIFI_tty_port shall set one and only one of BOARD_SERIAL_WIFI="", BOARD_SERIAL_WIFI="/dev/ttyS0", BOARD_SERIAL_WIFI="/dev/ttyS1", BOARD_SERIAL_WIFI="/dev/ttyS2", BOARD_SERIAL_WIFI="/dev/ttyS3", BOARD_SERIAL_WIFI="/dev/ttyS4", BOARD_SERIAL_WIFI="/dev/ttyS5", BOARD_SERIAL_WIFI="/dev/ttyS6"  or BOARD_SERIAL_WIFI="/dev/ttyS7"
+Source --> 
+
+ID --> PX4-6.26
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> BOARD_SERIAL_WIFI
+Req --> The Serial_ports may set BOARD_SERIAL_WIFI
+Source --> 
+
+ID --> PX4-6.27
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> EXT2_tty_port
+Req --> The Serial_ports may set EXT2_tty_port
+Source --> 
+
+ID --> PX4-6.27.1
+Valid --> 1
+Rule --> R4
+Parent --> EXT2_tty_port
+Child --> BOARD_SERIAL_EXT2_eq_None, BOARD_SERIAL_EXT2_eq_dev_ttyS0, BOARD_SERIAL_EXT2_eq_dev_ttyS1, BOARD_SERIAL_EXT2_eq_dev_ttyS2, BOARD_SERIAL_EXT2_eq_dev_ttyS3, BOARD_SERIAL_EXT2_eq_dev_ttyS4, BOARD_SERIAL_EXT2_eq_dev_ttyS5, BOARD_SERIAL_EXT2_eq_dev_ttyS6, BOARD_SERIAL_EXT2_eq_dev_ttyS7
+Req --> The EXT2_tty_port shall set one and only one of BOARD_SERIAL_EXT2="", BOARD_SERIAL_EXT2="/dev/ttyS0", BOARD_SERIAL_EXT2="/dev/ttyS1", BOARD_SERIAL_EXT2="/dev/ttyS2", BOARD_SERIAL_EXT2="/dev/ttyS3", BOARD_SERIAL_EXT2="/dev/ttyS4", BOARD_SERIAL_EXT2="/dev/ttyS5", BOARD_SERIAL_EXT2="/dev/ttyS6"  or BOARD_SERIAL_EXT2="/dev/ttyS7"
+Source --> 
+
+ID --> PX4-6.28
+Valid --> 1
+Rule --> R3
+Parent --> Serial_ports
+Child --> BOARD_SERIAL_EXT2
+Req --> The Serial_ports may set BOARD_SERIAL_EXT2
+Source --> 
+
+ID --> PX4-7
+Valid --> 1
+Rule --> R2
+Parent --> PX4_Firmware
+Child --> PX4_Drivers
+Req --> The PX4_Firmware shall select PX4_Drivers
+Source --> 
+
+ID --> PX4-8
+Valid --> 1
+Rule --> R2
+Parent --> PX4_Firmware
+Child --> PX4_Modules
+Req --> The PX4_Firmware shall select PX4_Modules
+Source --> 
+
+ID --> PX4-9
+Valid --> 1
+Rule --> R2
+Parent --> PX4_Firmware
+Child --> PX4_SystemCmds
+Req --> The PX4_Firmware shall select PX4_SystemCmds
+Source --> 
+
+ID --> PX4-9.1
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_ACTUATOR_TEST
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_ACTUATOR_TEST
+Source --> 
+
+ID --> PX4-9.2
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_BL_UPDATE
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_BL_UPDATE
+Source --> 
+
+ID --> PX4-9.2.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_BL_UPDATE
+Child --> USER_BL_UPDATE
+Req --> The SYSTEMCMDS_BL_UPDATE may select USER_BL_UPDATE
+Source --> 
+
+ID --> PX4-9.3
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_BSONDUMP
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_BSONDUMP
+Source --> 
+
+ID --> PX4-9.3.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_BSONDUMP
+Child --> USER_BSONDUMP
+Req --> The SYSTEMCMDS_BSONDUMP may select USER_BSONDUMP
+Source --> 
+
+ID --> PX4-9.4
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_DMESG
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_DMESG
+Source --> 
+
+ID --> PX4-9.4.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_DMESG
+Child --> USER_DMESG
+Req --> The SYSTEMCMDS_DMESG may select USER_DMESG
+Source --> 
+
+ID --> PX4-9.5
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_DUMPFILE
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_DUMPFILE
+Source --> 
+
+ID --> PX4-9.5.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_DUMPFILE
+Child --> USER_DUMPFILE
+Req --> The SYSTEMCMDS_DUMPFIE may select USER_DUMPFILE
+Source --> 
+
+ID --> PX4-9.6
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_DYN
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_DYN
+Source --> 
+
+ID --> PX4-9.6.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_DYN
+Child --> USER_DYN
+Req --> The SYSTEMCMDS_DYN may select USER_DYN
+Source --> 
+
+ID --> PX4-9.7
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_FAILURE
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_FAILURE
+Source --> 
+
+ID --> PX4-9.7.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_FAILURE
+Child --> USER_FAILURE
+Req --> The SYSTEMCMDS_FAILURE may select USER_FAILURE
+Source --> 
+
+ID --> PX4-9.8
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_GPIO
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_GPIO
+Source --> 
+
+ID --> PX4-9.9
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_HARDFAULT_LOG
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_HARDFAULT_LOG
+Source --> 
+
+ID --> PX4-9.9.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_HARDFAULT_LOG
+Child --> USER_HARDFAULT_LOG
+Req --> The SYSTEMCMDS_HARDFAULT_LOG may select USER_HARDFAULT_LOG
+Source --> 
+
+ID --> PX4-9.10
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_HIST
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_HIST
+Source --> 
+
+ID --> PX4-9.11
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_I2C_LAUNCHER
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_I2C_LAUNCHER
+Source --> 
+
+ID --> PX4-9.11.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_I2C_LAUNCHER
+Child --> USER_I2C_LAUNCHER
+Req --> The SYSTEMCMDS_I2C_LAUNCHER may select USER_I2C_LAUNCHER
+Source --> 
+
+ID --> PX4-9.12
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_I2CDETECT
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_I2CDETECT
+Source --> 
+
+ID --> PX4-9.13
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_IO_BYPASS_CONTROL
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_IO_BYPASS_CONTROL
+Source --> 
+
+ID --> PX4-9.14
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> USER_IO_BYPASS_CONTROL
+Req --> The PX4_SystemCmds may select USER_IO_BYPASS_CONTROL
+Source --> 
+
+ID --> PX4-9.15
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_LED_CONTROL
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_LED_CONTROL
+Source --> 
+
+ID --> PX4-9.15.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_LED_CONTROL
+Child --> USER_LED_CONTROL
+Req --> The SYSTEMCMDS_LED_CONTROL may select USER_LED_CONTROL
+Source --> 
+
+ID --> PX4-9.16
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_MFT
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_MFT
+Source --> 
+
+ID --> PX4-9.17
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_MICROBENCH
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_MICROBENCH
+Source --> 
+
+ID --> PX4-9.17.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_MICROBENCH
+Child --> USER_MICROBENCH
+Req --> The SYSTEMCMDS_MICROBENCH may select USER_MICROBENCH
+Source --> 
+
+ID --> PX4-9.18
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_MTD
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_MTD
+Source --> 
+
+ID --> PX4-9.18.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_MTD
+Child --> USER_MTD
+Req --> The SYSTEMCMDS_MTD may select USER_MTD
+Source --> 
+
+ID --> PX4-9.19
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_NETMAN
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_NETMAN
+Source --> 
+
+ID --> PX4-9.19.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_NETMAN
+Child --> USER_NETMAN
+Req --> The SYSTEMCMDS_NETMAN may select USER_NETMAN
+Source --> 
+
+ID --> PX4-9.20
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_NSHTERM
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_NSHTERM
+Source --> 
+
+ID --> PX4-9.20.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_NSHTERM
+Child --> USER_NSHTERM
+Req --> The SYSTEMCMDS_NSHTERM may select USER_NSHTERM
+Source --> 
+
+ID --> PX4-9.21
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_PARAM
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_PARAM
+Source --> 
+
+ID --> PX4-9.22
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_PERF
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_PERF
+Source --> 
+
+ID --> PX4-9.22.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_PERF
+Child --> USER_PERF
+Req --> The SYSTEMCMDS_PERF may select USER_PERF
+Source --> 
+
+ID --> PX4-9.23
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_REBOOT
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_REBOOT
+Source --> 
+
+ID --> PX4-9.23.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_REBOOT
+Child --> USER_REBOOT
+Req --> The SYSTEMCMDS_REBOOT may select USER_REBOOT
+Source --> 
+
+ID --> PX4-9.24
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_REFLECT
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_REFLECT
+Source --> 
+
+ID --> PX4-9.24.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_REFLECT
+Child --> USER_REFLECT
+Req --> The SYSTEMCMDS_REFLECT may select USER_REFLECT
+Source --> 
+
+ID --> PX4-9.25
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_SD_BENCH
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_SD_BENCH
+Source --> 
+
+ID --> PX4-9.25.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_SD_BENCH
+Child --> USER_SD_BENCH
+Req --> The SYSTEMCMDS_SD_BENCH may select USER_SD_BENCH
+Source --> 
+
+ID --> PX4-9.26
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_SD_STRESS
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_SD_STRESS
+Source --> 
+
+ID --> PX4-9.27
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_SERIAL_PASSTHRU
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_SERIAL_PASSTHRU
+Source --> 
+
+ID --> PX4-9.27.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_SERIAL_PASSTHRU
+Child --> SERIAL_PASSTHRU_UBLOX
+Req --> The SYSTEMCMDS_SERIAL_PASSTHRU may select SERIAL_PASSTHRU_UBLOX
+Source --> 
+
+ID --> PX4-9.27.1.1
+Valid --> 1
+Rule --> R3
+Parent --> SERIAL_PASSTHRU_UBLOX
+Child --> SERIAL_PASSTHRU_GPS
+Req --> The SERIAL_PASSTHRU_UBLOX may select SERIAL_PASSTHRU_GPS
+Source --> 
+
+ID --> PX4-9.27.1.1.1
+Valid --> 1
+Rule --> R3
+Parent --> SERIAL_PASSTHRU_GPS
+Child --> SERIAL_PASSTHRU_GPS1
+Req --> The SERIAL_PASSTHRU_GPS may select SERIAL_PASSTHRU_GPS1
+Source --> 
+
+ID --> PX4-9.27.1.1.2
+Valid --> 1
+Rule --> R3
+Parent --> SERIAL_PASSTHRU_GPS
+Child --> SERIAL_PASSTHRU_GPS2
+Req --> The SERIAL_PASSTHRU_GPS may select SERIAL_PASSTHRU_GPS2
+Source --> 
+
+ID --> PX4-9.27.1.1.3
+Valid --> 1
+Rule --> R3
+Parent --> SERIAL_PASSTHRU_GPS
+Child --> SERIAL_PASSTHRU_GPS3
+Req --> The SERIAL_PASSTHRU_GPS may select SERIAL_PASSTHRU_GPS3
+Source --> 
+
+ID --> PX4-9.27.1.1.4
+Valid --> 1
+Rule --> R3
+Parent --> SERIAL_PASSTHRU_GPS
+Child --> SERIAL_PASSTHRU_GPS4
+Req --> The SERIAL_PASSTHRU_GPS may select SERIAL_PASSTHRU_GPS4
+Source --> 
+
+ID --> PX4-9.27.1.1.5
+Valid --> 1
+Rule --> R3
+Parent --> SERIAL_PASSTHRU_GPS
+Child --> SERIAL_PASSTHRU_GPS5
+Req --> The SERIAL_PASSTHRU_GPS may select SERIAL_PASSTHRU_GPS5
+Source --> 
+
+ID --> PX4-9.27.1.2
+Valid --> 1
+Rule --> R2
+Parent --> SERIAL_PASSTHRU_UBLOX
+Child --> SERIAL_PASSTHRU_UBLOX_BAUDRATE_eq_115200
+Req --> The SERIAL_PASSTHRU_UBLOX shall select SERIAL_PASSTHRU_UBLOX_BAUDRATE=115200
+Source --> 
+
+ID --> PX4-9.28
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_SERIAL_TEST
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_SERIAL_TEST
+Source --> 
+
+ID --> PX4-9.28.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_SERIAL_TEST
+Child --> USER_SERIAL_TEST
+Req --> The SYSTEMCMDS_SERIAL_TEST may select USER_SERIAL_TEST
+Source --> 
+
+ID --> PX4-9.29
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_SHUTDOWN
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_SHUTDOWN
+Source --> 
+
+ID --> PX4-9.29.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_SHUTDOWN
+Child --> USER_SHUTDOWN
+Req --> The SYSTEMCMDS_SHUTDOWN may select USER_SHUTDOWN
+Source --> 
+
+ID --> PX4-9.30
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_SYSTEM_TIME
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_SYSTEM_TIME
+Source --> 
+
+ID --> PX4-9.30.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_SYSTEM_TIME
+Child --> USER_SYSTEM_TIME
+Req --> The SYSTEMCMDS_SYSTEM_TIME may select USER_SYSTEM_TIME
+Source --> 
+
+ID --> PX4-9.31
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_TESTS
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_TESTS
+Source --> 
+
+ID --> PX4-9.31.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_TESTS
+Child --> USER_TESTS
+Req --> The SYSTEMCMDS_TESTS may select USER_TESTS
+Source --> 
+
+ID --> PX4-9.32
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_TOP
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_TOP
+Source --> 
+
+ID --> PX4-9.32.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_TOP
+Child --> USER_TOP
+Req --> The SYSTEMCMDS_TOP may select USER_TOP
+Source --> 
+
+ID --> PX4-9.33
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_TOPIC_LISTENER
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_TOPIC_LISTENER
+Source --> 
+
+ID --> PX4-9.33.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_TOPIC_LISTENER
+Child --> USER_TOPIC_LISTENER
+Req --> The SYSTEMCMDS_TOPIC_LISTENER may select USER_TOPIC_LISTENER
+Source --> 
+
+ID --> PX4-9.34
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_TUNE_CONTROL
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_TUNE_CONTROL
+Source --> 
+
+ID --> PX4-9.34.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_TUNE_CONTROL
+Child --> USER_TUNE_CONTROL
+Req --> The SYSTEMCMDS_TUNE_CONTROL may select USER_TUNE_CONTROL
+Source --> 
+
+ID --> PX4-9.35
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_UORB
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_UORB
+Source --> 
+
+ID --> PX4-9.35.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_UORB
+Child --> USER_UORB
+Req --> The SYSTEMCMDS_UORB may select USER_UORB
+Source --> 
+
+ID --> PX4-9.36
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_USB_CONNECTED
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_USB_CONNECTED
+Source --> 
+
+ID --> PX4-9.36.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_USB_CONNECTED
+Child --> USER_USB_CONNECTED
+Req --> The SYSTEMCMDS_USB_CONNECTED may select USER_USB_CONNECTED
+Source --> 
+
+ID --> PX4-9.37
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_VER
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_VER
+Source --> 
+
+ID --> PX4-9.37.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_VER
+Child --> USER_VER
+Req --> The SYSTEMCMDS_VER may select USER_VER
+Source --> 
+
+ID --> PX4-9.38
+Valid --> 1
+Rule --> R3
+Parent --> PX4_SystemCmds
+Child --> SYSTEMCMDS_WORK_QUEUE
+Req --> The PX4_SystemCmds may select SYSTEMCMDS_WORK_QUEUE
+Source --> 
+
+ID --> PX4-9.38.1
+Valid --> 1
+Rule --> R3
+Parent --> SYSTEMCMDS_WORK_QUEUE
+Child --> USER_WORK_QUEUE
+Req --> The SYSTEMCMDS_WORK_QUEUE may select USER_WORK_QUEUE
+Source --> 
+
+ID --> PX4-10
+Valid --> 1
+Rule --> R2
+Parent --> PX4_Firmware
+Child --> PX4_Examples
+Req --> The PX4_Firmware shall select PX4_Examples
+Source --> 
+
+ID --> PX4-10.1
+Valid --> 1
+Rule --> R3
+Parent --> PX4_Examples
+Child --> EXAMPLES_DYN_HELLO
+Req --> The PX4_Examples may select EXAMPLES_DYN_HELLO
+Source --> 
+
+ID --> PX4-10.2
+Valid --> 1
+Rule --> R3
+Parent --> PX4_Examples
+Child --> EXAMPLES_FAKE_GPS
+Req --> The PX4_Examples may select EXAMPLES_FAKE_GPS
+Source --> 
+
+ID --> PX4-10.3
+Valid --> 1
+Rule --> R3
+Parent --> PX4_Examples
+Child --> EXAMPLES_FAKE_IMU
+Req --> The PX4_Examples may select EXAMPLES_FAKE_IMU
+Source --> 
+
+ID --> PX4-10.4
+Valid --> 1
+Rule --> R3
+Parent --> PX4_Examples
+Child --> EXAMPLES_FAKE_MAGNOTOMETER
+Req --> The PX4_Examples may select EXAMPLES_FAKE_MAGNOTOMETER
+Source --> 
+
+ID --> PX4-10.5
+Valid --> 1
+Rule --> R3
+Parent --> PX4_Examples
+Child --> EXAMPLES_HELLO
+Req --> The PX4_Examples may select EXAMPLES_HELLO
+Source --> 
+
+ID --> PX4-10.6
+Valid --> 1
+Rule --> R3
+Parent --> PX4_Examples
+Child --> EXAMPLES_MATLAB_CSV_SERIAL
+Req --> The PX4_Examples may select EXAMPLES_MATLAB_CSV_SERIAL
+Source --> 
+
+ID --> PX4-10.7
+Valid --> 1
+Rule --> R3
+Parent --> PX4_Examples
+Child --> EXAMPLES_PX4_MAVLINK_DEBUG
+Req --> The PX4_Examples may select EXAMPLES_PX4_MAVLINK_DEBUG
+Source --> 
+
+ID --> PX4-10.8
+Valid --> 1
+Rule --> R3
+Parent --> PX4_Examples
+Child --> EXAMPLES_PX4_SIMPLE_APP
+Req --> The PX4_Examples may select EXAMPLES_PX4_SIMPLE_APP
+Source --> 
+
+ID --> PX4-10.9
+Valid --> 1
+Rule --> R3
+Parent --> PX4_Examples
+Child --> EXAMPLES_WORK_ITEM
+Req --> The PX4_Examples may select EXAMPLES_WORK_ITEM
+Source --> 
+
+ID --> PX4-11
+Valid --> 1
+Rule --> R2
+Parent --> PX4_Firmware
+Child --> PX4_Platforms
+Req --> The PX4_Firmware shall select PX4_Platforms
+Source --> 
+
+ID --> PX4-11.1
+Valid --> 1
+Rule --> R3
+Parent --> PX4_Platforms
+Child --> ORB_COMMUNICATOR
+Req --> The PX4_Platforms may select ORB_COMMUNICATOR
+Source --> 
+
+ID --> PX4-12
+Valid --> 1
+Rule --> R3
+Parent --> PX4_Firmware
+Child --> LIB_CDRSTREAM
+Req --> The PX4_Firmware may select LIB_CDRSTREAM
+Source --> 
+
+ID --> PX4-13
+Valid --> 1
+Rule --> R7
+Parent --> MODULES_ZENOH
+Child --> LIB_CDRSTREAM
+Req --> The MODULES_ZENOH requires LIB_CDRSTREAM
+Source --> 
+
+ID --> PX4-14
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_TESTING
+Child --> SYSTEMCMDS_TESTS
+Req --> The BOARD_TESTING requires SYSTEMCMDS_TESTS
+Source --> 
+
+ID --> PX4-15
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_LOCKSTEP
+Child --> PLATFORM_POSIX
+Req --> The BOARD_LOCKSTEP requires PLATFORM_POSIX
+Source --> 
+
+ID --> PX4-15.1
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_NOLOCKSTEP
+Child --> PLATFORM_POSIX
+Req --> The BOARD_NOLOCKSTEP requires PLATFORM_POSIX
+Source --> 
+
+ID --> PX4-15.2
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_LINUX_TARGET
+Child --> PLATFORM_POSIX
+Req --> The BOARD_LINUX_TARGET requires PLATFORM_POSIX
+Source --> 
+
+ID --> PX4-16
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_PLATFORM_eq_nuttx
+Child --> PLATFORM_NUTTX
+Req --> The BOARD_PLATFORM_eq_nuttx requires PLATFORM_NUTTX
+Source -->
+
+ID --> PX4-16.1
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_PLATFORM_eq_posix
+Child --> PLATFORM_POSIX
+Req --> The BOARD_PLATFORM_eq_posix requires PLATFORM_POSIX
+Source -->
+
+ID --> PX4-16.2
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_PLATFORM_eq_qurt
+Child --> PLATFORM_QURT
+Req --> The BOARD_PLATFORM_eq_qurt requires PLATFORM_QURT
+Source -->
+
+ID --> PX4-16.3
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_PLATFORM_eq_ros2
+Child --> PLATFORM_ROS2
+Req --> The BOARD_PLATFORM_eq_ros2 requires PLATFORM_ROS2
+Source -->
+
+ID --> PX4-17
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_IO
+Child --> DRIVERS_PX4IO
+Req --> The BOARD_IO requires DRIVERS_PX4IO
+Source --> 
+
+ID --> PX4-18
+Valid --> 1
+Rule --> R7
+Parent --> USER_BL_UPDATE
+Child --> BOARD_PROTECTED
+Req --> The USER_BL_UPDATE requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.1
+Valid --> 1
+Rule --> R7
+Parent --> USER_BSONDUMP
+Child --> BOARD_PROTECTED
+Req --> The USER_BSONDUMP requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.2
+Valid --> 1
+Rule --> R7
+Parent --> USER_DMESG
+Child --> BOARD_PROTECTED
+Req --> The USER_DMESG requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.3
+Valid --> 1
+Rule --> R7
+Parent --> USER_DUMPFILE
+Child --> BOARD_PROTECTED
+Req --> The USER_DUMPFILE requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.4
+Valid --> 1
+Rule --> R7
+Parent --> USER_DYN
+Child --> BOARD_PROTECTED
+Req --> The USER_DYN requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.5
+Valid --> 1
+Rule --> R7
+Parent --> USER_FAILURE
+Child --> BOARD_PROTECTED
+Req --> The USER_FAILURE requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.6
+Valid --> 1
+Rule --> R7
+Parent --> USER_HARDFAULT_LOG
+Child --> BOARD_PROTECTED
+Req --> The USER_HARDFAULT_LOG requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.7
+Valid --> 1
+Rule --> R7
+Parent --> USER_IO_BYPASS_CONTROL
+Child --> BOARD_PROTECTED
+Req --> The USER_IO_BYPASS_CONTROL requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.7.1
+Valid --> 1
+Rule --> R7
+Parent --> USER_IO_BYPASS_CONTROL
+Child --> SYSTEMCMDS_SS_IO_TIMER_TEST
+Req --> The USER_IO_BYPASS_CONTROL requires SYSTEMCMDS_SS_IO_TIMER_TEST
+Source --> 
+
+ID --> PX4-18.8
+Valid --> 1
+Rule --> R7
+Parent --> USER_LED_CONTROL
+Child --> BOARD_PROTECTED
+Req --> The USER_LED_CONTROL requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.9
+Valid --> 1
+Rule --> R7
+Parent --> USER_MICROBENCH
+Child --> BOARD_PROTECTED
+Req --> The USER_MICROBENCH requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.10
+Valid --> 1
+Rule --> R7
+Parent --> USER_MTD
+Child --> BOARD_PROTECTED
+Req --> The USER_MTD requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.11
+Valid --> 1
+Rule --> R7
+Parent --> USER_NETMAN
+Child --> BOARD_PROTECTED
+Req --> The USER_NETMAN requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.12
+Valid --> 1
+Rule --> R7
+Parent --> USER_NSHTERM
+Child --> BOARD_PROTECTED
+Req --> The USER_NSHTERM requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.13
+Valid --> 1
+Rule --> R7
+Parent --> USER_PERF
+Child --> BOARD_PROTECTED
+Req --> The USER_PERF requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.14
+Valid --> 1
+Rule --> R7
+Parent --> USER_REBOOT
+Child --> BOARD_PROTECTED
+Req --> The USER_REBOOT requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.15
+Valid --> 1
+Rule --> R7
+Parent --> USER_REFLECT
+Child --> BOARD_PROTECTED
+Req --> The USER_REFLECT requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.16
+Valid --> 1
+Rule --> R7
+Parent --> USER_SD_BENCH
+Child --> BOARD_PROTECTED
+Req --> The USER_SD_BENCH requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.17
+Valid --> 1
+Rule --> R7
+Parent --> USER_SERIAL_TEST
+Child --> BOARD_PROTECTED
+Req --> The USER_SERIAL_TEST requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.18
+Valid --> 1
+Rule --> R7
+Parent --> USER_SHUTDOWN
+Child --> BOARD_PROTECTED
+Req --> The USER_SHUTDOWN requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.19
+Valid --> 1
+Rule --> R7
+Parent --> USER_SYSTEM_TIME
+Child --> BOARD_PROTECTED
+Req --> The USER_SYSTEM_TIME requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.20
+Valid --> 1
+Rule --> R7
+Parent --> USER_TESTS
+Child --> BOARD_PROTECTED
+Req --> The USER_TESTS requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.21
+Valid --> 1
+Rule --> R7
+Parent --> USER_TOP
+Child --> BOARD_PROTECTED
+Req --> The USER_TOP requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.22
+Valid --> 1
+Rule --> R7
+Parent --> USER_TOPIC_LISTENER
+Child --> BOARD_PROTECTED
+Req --> The USER_TOPIC_LISTENER requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.23
+Valid --> 1
+Rule --> R7
+Parent --> USER_TUNE_CONTROL
+Child --> BOARD_PROTECTED
+Req --> The USER_TUNE_CONTROL requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.24
+Valid --> 1
+Rule --> R7
+Parent --> USER_UORB
+Child --> BOARD_PROTECTED
+Req --> The USER_UORB requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.25
+Valid --> 1
+Rule --> R7
+Parent --> USER_USB_CONNECTED
+Child --> BOARD_PROTECTED
+Req --> The USER_USB_CONNECTED requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.26
+Valid --> 1
+Rule --> R7
+Parent --> USER_VER
+Child --> BOARD_PROTECTED
+Req --> The USER_VER requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-18.27
+Valid --> 1
+Rule --> R7
+Parent --> USER_WORK_QUEUE
+Child --> BOARD_PROTECTED
+Req --> The USER_WORK_QUEUE requires BOARD_PROTECTED
+Source --> 
+
+ID --> PX4-19
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_URT6
+Child --> URT6_tty_port
+Req --> The BOARD_SERIAL_URT6 requires URT6_tty_port
+Source --> 
+
+ID --> PX4-19.1
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_URT6
+Child --> BOARD_SERIAL_URT6_eq_None
+Req --> The BOARD_SERIAL_URT6 excludes BOARD_SERIAL_URT6_eq_None
+Source --> 
+
+ID --> PX4-19.2
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_GPS1
+Child --> GPS1_tty_port
+Req --> The BOARD_SERIAL_GPS1 requires GPS1_tty_port
+Source --> 
+
+ID --> PX4-19.3
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_GPS1
+Child --> BOARD_SERIAL_GPS1_eq_None
+Req --> The BOARD_SERIAL_GPS1 excludes BOARD_SERIAL_GPS1_eq_None
+Source --> 
+
+ID --> PX4-19.4
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_GPS2
+Child --> GPS2_tty_port
+Req --> The BOARD_SERIAL_GPS2 requires GPS2_tty_port
+Source --> 
+
+ID --> PX4-19.5
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_GPS2
+Child --> BOARD_SERIAL_GPS2_eq_None
+Req --> The BOARD_SERIAL_GPS2 excludes BOARD_SERIAL_GPS2_eq_None
+Source --> 
+
+ID --> PX4-19.6
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_GPS3
+Child --> GPS3_tty_port
+Req --> The BOARD_SERIAL_GPS3 requires GPS3_tty_port
+Source --> 
+
+ID --> PX4-19.7
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_GPS3
+Child --> BOARD_SERIAL_GPS3_eq_None
+Req --> The BOARD_SERIAL_GPS3 excludes BOARD_SERIAL_GPS3_eq_None
+Source --> 
+
+ID --> PX4-19.8
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_GPS4
+Child --> GPS4_tty_port
+Req --> The BOARD_SERIAL_GPS4 requires GPS4_tty_port
+Source --> 
+
+ID --> PX4-19.9
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_GPS4
+Child --> BOARD_SERIAL_GPS4_eq_None
+Req --> The BOARD_SERIAL_GPS4 excludes BOARD_SERIAL_GPS4_eq_None
+Source --> 
+
+ID --> PX4-19.10
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_GPS5
+Child --> GPS5_tty_port
+Req --> The BOARD_SERIAL_GPS5 requires GPS5_tty_port
+Source --> 
+
+ID --> PX4-19.11
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_GPS5
+Child --> BOARD_SERIAL_GPS5_eq_None
+Req --> The BOARD_SERIAL_GPS5 excludes BOARD_SERIAL_GPS5_eq_None
+Source --> 
+
+ID --> PX4-19.12
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_TEL1
+Child --> TEL1_tty_port
+Req --> The BOARD_SERIAL_TEL1 requires TEL1_tty_port
+Source --> 
+
+ID --> PX4-19.13
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_TEL1
+Child --> BOARD_SERIAL_TEL1_eq_None
+Req --> The BOARD_SERIAL_TEL1 excludes BOARD_SERIAL_TEL1_eq_None
+Source --> 
+
+ID --> PX4-19.14
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_TEL2
+Child --> TEL2_tty_port
+Req --> The BOARD_SERIAL_TEL2 requires TEL2_tty_port
+Source --> 
+
+ID --> PX4-19.15
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_TEL2
+Child --> BOARD_SERIAL_TEL2_eq_None
+Req --> The BOARD_SERIAL_TEL2 excludes BOARD_SERIAL_TEL2_eq_None
+Source --> 
+
+ID --> PX4-19.16
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_TEL3
+Child --> TEL3_tty_port
+Req --> The BOARD_SERIAL_TEL3 requires TEL3_tty_port
+Source --> 
+
+ID --> PX4-19.17
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_TEL3
+Child --> BOARD_SERIAL_TEL3_eq_None
+Req --> The BOARD_SERIAL_TEL3 excludes BOARD_SERIAL_TEL3_eq_None
+Source --> 
+
+ID --> PX4-19.18
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_TEL4
+Child --> TEL4_tty_port
+Req --> The BOARD_SERIAL_TEL4 requires TEL4_tty_port
+Source --> 
+
+ID --> PX4-19.19
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_TEL4
+Child --> BOARD_SERIAL_TEL4_eq_None
+Req --> The BOARD_SERIAL_TEL4 excludes BOARD_SERIAL_TEL4_eq_None
+Source --> 
+
+ID --> PX4-19.20
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_TEL5
+Child --> TEL5_tty_port
+Req --> The BOARD_SERIAL_TEL5 requires TEL5_tty_port
+Source --> 
+
+ID --> PX4-19.21
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_TEL5
+Child --> BOARD_SERIAL_TEL5_eq_None
+Req --> The BOARD_SERIAL_TEL5 excludes BOARD_SERIAL_TEL5_eq_None
+Source --> 
+
+ID --> PX4-19.22
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_RC
+Child --> RC_tty_port
+Req --> The BOARD_SERIAL_RC requires RC_tty_port
+Source --> 
+
+ID --> PX4-19.23
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_RC
+Child --> BOARD_SERIAL_RC_eq_None
+Req --> The BOARD_SERIAL_RC excludes BOARD_SERIAL_RC_eq_None
+Source --> 
+
+ID --> PX4-19.24
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_WIFI
+Child --> WIFI_tty_port
+Req --> The BOARD_SERIAL_WIFI requires WIFI_tty_port
+Source --> 
+
+ID --> PX4-19.25
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_WIFI
+Child --> BOARD_SERIAL_WIFI_eq_None
+Req --> The BOARD_SERIAL_WIFI excludes BOARD_SERIAL_WIFI_eq_None
+Source --> 
+
+ID --> PX4-19.26
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_EXT2
+Child --> EXT2_tty_port
+Req --> The BOARD_SERIAL_EXT2 requires EXT2_tty_port
+Source --> 
+
+ID --> PX4-19.27
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_SERIAL_EXT2
+Child --> BOARD_SERIAL_EXT2_eq_None
+Req --> The BOARD_SERIAL_EXT2 excludes BOARD_SERIAL_EXT2_eq_None
+Source --> 
+
+ID --> PX4-20
+Valid --> 1
+Rule --> R7
+Parent --> SERIAL_PASSTHRU_GPS1
+Child --> BOARD_SERIAL_GPS1
+Req --> The SERIAL_PASSTHRU_GPS1 requires BOARD_SERIAL_GPS1
+Source -->
+
+ID --> PX4-20.1
+Valid --> 1
+Rule --> R7
+Parent --> SERIAL_PASSTHRU_GPS2
+Child --> BOARD_SERIAL_GPS2
+Req --> The SERIAL_PASSTHRU_GPS2 requires BOARD_SERIAL_GPS2
+Source -->
+
+ID --> PX4-20.2
+Valid --> 1
+Rule --> R7
+Parent --> SERIAL_PASSTHRU_GPS3
+Child --> BOARD_SERIAL_GPS3
+Req --> The SERIAL_PASSTHRU_GPS3 requires BOARD_SERIAL_GPS3
+Source -->
+
+ID --> PX4-20.3
+Valid --> 1
+Rule --> R7
+Parent --> SERIAL_PASSTHRU_GPS4
+Child --> BOARD_SERIAL_GPS4
+Req --> The SERIAL_PASSTHRU_GPS4 requires BOARD_SERIAL_GPS4
+Source -->
+
+ID --> PX4-20.4
+Valid --> 1
+Rule --> R7
+Parent --> SERIAL_PASSTHRU_GPS5
+Child --> BOARD_SERIAL_GPS5
+Req --> The SERIAL_PASSTHRU_GPS5 requires BOARD_SERIAL_GPS5
+Source -->
+
+ID --> PX4-21
+Valid --> 1
+Rule --> R7
+Parent --> SERIAL_PASSTHRU_GPS1
+Child --> SERIAL_PASSTHRU_GPS2
+Req --> The SERIAL_PASSTHRU_GPS1 excludes SERIAL_PASSTHRU_GPS2
+Source -->
+
+ID --> PX4-21.1
+Valid --> 1
+Rule --> R7
+Parent --> SERIAL_PASSTHRU_GPS1
+Child --> SERIAL_PASSTHRU_GPS3
+Req --> The SERIAL_PASSTHRU_GPS1 excludes SERIAL_PASSTHRU_GPS3
+Source -->
+
+ID --> PX4-21.2
+Valid --> 1
+Rule --> R7
+Parent --> SERIAL_PASSTHRU_GPS1
+Child --> SERIAL_PASSTHRU_GPS4
+Req --> The SERIAL_PASSTHRU_GPS1 excludes SERIAL_PASSTHRU_GPS4
+Source -->
+
+ID --> PX4-21.3
+Valid --> 1
+Rule --> R7
+Parent --> SERIAL_PASSTHRU_GPS1
+Child --> SERIAL_PASSTHRU_GPS5
+Req --> The SERIAL_PASSTHRU_GPS1 excludes SERIAL_PASSTHRU_GPS5
+Source -->
+
+ID --> PX4-21.4
+Valid --> 1
+Rule --> R7
+Parent --> SERIAL_PASSTHRU_GPS2
+Child --> SERIAL_PASSTHRU_GPS3
+Req --> The SERIAL_PASSTHRU_GPS2 excludes SERIAL_PASSTHRU_GPS3
+Source -->
+
+ID --> PX4-21.5
+Valid --> 1
+Rule --> R7
+Parent --> SERIAL_PASSTHRU_GPS2
+Child --> SERIAL_PASSTHRU_GPS4
+Req --> The SERIAL_PASSTHRU_GPS4 excludes SERIAL_PASSTHRU_GPS4
+Source -->
+
+ID --> PX4-21.6
+Valid --> 1
+Rule --> R7
+Parent --> SERIAL_PASSTHRU_GPS2
+Child --> SERIAL_PASSTHRU_GPS5
+Req --> The SERIAL_PASSTHRU_GPS2 excludes SERIAL_PASSTHRU_GPS5
+Source -->
+
+ID --> PX4-21.7
+Valid --> 1
+Rule --> R7
+Parent --> SERIAL_PASSTHRU_GPS3
+Child --> SERIAL_PASSTHRU_GPS4
+Req --> The SERIAL_PASSTHRU_GPS3 excludes SERIAL_PASSTHRU_GPS4
+Source -->
+
+ID --> PX4-21.8
+Valid --> 1
+Rule --> R7
+Parent --> SERIAL_PASSTHRU_GPS3
+Child --> SERIAL_PASSTHRU_GPS5
+Req --> The SERIAL_PASSTHRU_GPS3 excludes SERIAL_PASSTHRU_GPS5
+Source -->
+
+ID --> PX4-21.9
+Valid --> 1
+Rule --> R7
+Parent --> SERIAL_PASSTHRU_GPS4
+Child --> SERIAL_PASSTHRU_GPS5
+Req --> The SERIAL_PASSTHRU_GPS4 excludes SERIAL_PASSTHRU_GPS5
+Source -->
+
+ID --> PX4-22
+Valid --> 1
+Rule --> R7
+Parent --> BOARD_ROOTFSDIR
+Child --> PLATFORM_POSIX
+Req --> The BOARD_ROOTFSDIR requires PLATFORM_POSIX
+Source -->
